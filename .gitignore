@@ -1,3 +1,7 @@
+# Modules, cache and builds
 node_modules/
 .parcel-cache/
 dist/
+
+# Node
+package-lock.json
