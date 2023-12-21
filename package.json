@@ -1,0 +1,22 @@
+{
+  "name": "luffy",
+  "version": "1.0.0",
+  "description": "> Self-hosted &amp; automatic anime web platform for seasonals",
+  "source": "src/index.html",
+  "scripts": {
+    "dev": "parcel",
+    "build": "parcel build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-coffeescript": "^2.10.3",
+    "parcel": "^2.10.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
