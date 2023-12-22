@@ -4,14 +4,17 @@
   "description": "Self-hosted & automatic anime web platform for seasonals",
   "targets": {
     "frontend": {
-      "source": "app/index.html"
+      "source": "app/index.html",
+      "context": "browser"
     },
     "backend": {
-      "source": "api/index.coffee"
+      "source": "api/index.coffee",
+      "context": "node"
     }
   },
   "scripts": {
-    "dev": "parcel",
+    "frontend": "parcel serve --target frontend",
+    "backend": "parcel build --target backend && node ./dist/backend/index.js",
     "build": "parcel build"
   },
   "keywords": [],
