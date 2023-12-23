@@ -101,3 +101,23 @@ export getShowEpisodes = ( showURL ) ->
         episodesList[episodeNumber] = episodeLinks
 
     return episodesList
+
+
+# Minimize load in schedule
+export getShowTitleYear = ( showURL ) ->
+
+    showTitle = await getData showURL, () ->
+        document.getElementsByClassName("entry-title")[0].textContent
+
+    episodesTable = await getData showURL, () ->
+        document.getElementById("show-release-table").outerHTML
+
+    # DOM
+    $ = cheerio.load episodesTable
+    
+    millenium = new Date().getFullYear().toString()[0..1]
+    decade = $("tr:last").find(".release-item-time:first").find("span:first").text()[-2..]
+
+    showYear = millenium + decade
+
+    return "#{showTitle} (#{showYear})"

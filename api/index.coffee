@@ -1,3 +1,3 @@
-import { getSchedule, getShowEpisodes } from "./scrapper.coffee"
+import { getShowTitleYear } from "./src/scrapper.coffee"
 
-episodes = await getShowEpisodes "https://subsplease.org/shows/shy/"
+console.log await getShowTitleYear "https://subsplease.org/shows/sk8-the-infinity/"
