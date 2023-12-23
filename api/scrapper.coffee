@@ -16,15 +16,18 @@ import puppeteer from "puppeteer"
 import * as cheerio from "cheerio"
 
 
+BASE_DOMAIN = "https://subsplease.org"
+
+
 # 'domain' has to be a domain name
 # 'query' has to be a JS function to evaluate in the browser
 getData = ( domain, query ) ->
     
-    browser = await puppeteer.launch({ headless: "false", slowMo: 400 })
+    browser = await puppeteer.launch { headless: "false", slowMo: 400 }
     page = await browser.newPage()
 
-    await page.goto( domain )
-    result = await page.evaluate( query )
+    await page.goto domain
+    result = await page.evaluate query 
 
     await browser.close()
     
@@ -33,17 +36,37 @@ getData = ( domain, query ) ->
 
 # Entire schedule, including:
 #   - names
-#   - covers
-#   - links to description
+#   - pictures
+#   - time
+#   - links to more info
 export getSchedule = () ->
     
-    scheduleTable = await getData "https://subsplease.org/schedule/", () ->
-        document.getElementById("full-schedule-table").innerHTML
-
-    scheduleItems = {}
+    scheduleTable = await getData "#{BASE_DOMAIN}/schedule", () ->
+        document.getElementById("full-schedule-table").outerHTML
 
     # DOM
-    $ = cheerio.load(scheduleTable)
+    $ = cheerio.load scheduleTable
 
-    $("tr").each ->
-        console.log $(this).find("h2").text()
+    scheduleItems = {}
+    currentDay = $("tr:first").find("h2").text()
+
+    $("tr").each ( index, element ) ->
+
+        if $(element).attr("class") is "day-of-week"
+            currentDay = $(element).find("h2").text()
+            return
+        
+        # Data extraction
+        show = {
+            "name": $(element).find("a").text(),
+            "picture": $(element).find("a").attr("data-preview-image"),
+            "time": $(element).find(".all-schedule-time:first").text(),
+            "link": $(element).find("a").attr("href")
+        }
+
+        if !scheduleItems.hasOwnProperty currentDay
+            scheduleItems[currentDay] = []
+
+        scheduleItems[currentDay].push show
+
+    return scheduleItems

@@ -1,3 +1,3 @@
 import { getSchedule } from "./scrapper.coffee"
 
-getSchedule()
+console.log await getSchedule()
