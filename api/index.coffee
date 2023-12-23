@@ -1,3 +1,3 @@
-import { getSchedule } from "./scrapper.coffee"
+import { getSchedule, getShowEpisodes } from "./scrapper.coffee"
 
-console.log await getSchedule()
+episodes = await getShowEpisodes "https://subsplease.org/shows/shy/"

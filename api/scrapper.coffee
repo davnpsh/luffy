@@ -23,10 +23,10 @@ BASE_DOMAIN = "https://subsplease.org"
 # 'query' has to be a JS function to evaluate in the browser
 getData = ( domain, query ) ->
     
-    browser = await puppeteer.launch { headless: "false", slowMo: 400 }
+    browser = await puppeteer.launch { headless: "false" }
     page = await browser.newPage()
 
-    await page.goto domain
+    await page.goto domain, { waitUntil: "networkidle0" }
     result = await page.evaluate query 
 
     await browser.close()
@@ -56,12 +56,12 @@ export getSchedule = () ->
             currentDay = $(element).find("h2").text()
             return
         
-        # Data extraction
+        # Data parsing
         show = {
             "name": $(element).find("a").text(),
             "picture": $(element).find("a").attr("data-preview-image"),
             "time": $(element).find(".all-schedule-time:first").text(),
-            "link": $(element).find("a").attr("href")
+            "link": BASE_DOMAIN + $(element).find("a").attr("href")
         }
 
         if !scheduleItems.hasOwnProperty currentDay
@@ -70,3 +70,34 @@ export getSchedule = () ->
         scheduleItems[currentDay].push show
 
     return scheduleItems
+
+
+# This receives the complete URL to a show
+# Example: https://subsplease.org/shows/shy/
+export getShowEpisodes = ( showURL ) ->
+
+    episodesTable = await getData showURL, () ->
+        document.getElementById("show-release-table").outerHTML
+
+    # DOM
+    $ = cheerio.load episodesTable
+
+    episodesList = {}
+
+    $("tr").each ( index, element ) ->
+
+        episodeNumber = $(element).find(".episode-title:first").text()[-2..]
+
+        # Data parsing
+        episodeLinks = {}
+
+        $(element).find(".links").each (index, element) ->
+            magnetLink = {
+                "#{$(this).text()}": $(this).next("a").attr("href")
+            }
+
+            episodeLinks = { ...episodeLinks, ...magnetLink }
+
+        episodesList[episodeNumber] = episodeLinks
+
+    return episodesList
