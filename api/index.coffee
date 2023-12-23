@@ -1,1 +1,3 @@
-console.log 'a'
+import { getSchedule } from "./scrapper.coffee"
+
+getSchedule()
