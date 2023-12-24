@@ -12,6 +12,7 @@ DISCLAIMER:
 ###
 
 
+import { log } from "./logger.coffee"
 import puppeteer from "puppeteer"
 import * as cheerio from "cheerio"
 
@@ -73,7 +74,7 @@ export getSchedule = () ->
 
         scheduleItems[currentDay].push show
 
-    log "request", "Fetched schedule items from provider."
+    log "answer", "Fetched schedule items from provider."
     return scheduleItems
 
 
@@ -107,7 +108,7 @@ export getShowEpisodes = ( showURL ) ->
 
         episodesList[episodeNumber] = episodeLinks
 
-    log "request", "Fetched episodes links from provider."
+    log "answer", "Fetched episodes links from provider."
     return episodesList
 
 
@@ -129,5 +130,5 @@ export getShowYear = ( showURL ) ->
 
     showYear = millenium + decade
 
-    log "request", "Fetched show release year from provider."
+    log "answer", "Fetched show release year from provider."
     return showYear

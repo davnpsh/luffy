@@ -42,7 +42,7 @@ export getShowID = ( name, year ) ->
             # Return always first result
             showID = response.data["results"][0]["id"]
 
-            log "request", "Fetched show ID #{showID}."
+            log "answer", "Fetched show ID #{showID}."
             return showID
         .catch ( error ) ->
             log "error", "Error trying to get show ID: \n" + error
@@ -79,7 +79,7 @@ export getShowDetails = ( showID ) ->
                     images:
                         poster: BASE_DOMAIN.IMAGE.LOW_RES + season["poster_path"]
             
-            log "request", "Fetched show details for show ID #{showDetails.id}."
+            log "answer", "Fetched show details for show ID #{showDetails.id}."
             return showDetails
         .catch ( error ) ->
             log "error", "Error trying to get show details: \n" + error
@@ -112,7 +112,7 @@ export getEpisodeDetails = ( showID, seasonNumber, episodeNumber ) ->
                 seasonNumber: response.data["season_number"]
                 image: BASE_DOMAIN.IMAGE.LOW_RES + response.data["still_path"]
 
-            log "request", "Fetched details for episode ID #{episodeDetails.id}."
+            log "answer", "Fetched details for episode ID #{episodeDetails.id}."
             return episodeDetails 
         .catch ( error ) ->
             log "error", "Error trying to get episode details: \n" + error
