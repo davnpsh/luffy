@@ -48,7 +48,7 @@ api.post "/api/show/details", ( req, res ) ->
 api.post "/api/show/episode_details", ( req, res ) ->
     data = req.body
 
-    log "request", "Request to fetch show details from #{ req.ip }."
+    log "request", "Request to fetch episode details from #{ req.ip }."
     res.send await tmdb.getEpisodeDetails data.showID, data.seasonNumber, data.episodeNumber
 
 
