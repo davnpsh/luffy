@@ -3,6 +3,8 @@ TheMovieDB api
 CREDITS: https://developer.themoviedb.org/
 ###
 
+
+import { log } from "./logger.coffee"
 import "dotenv/config"
 import axios from "axios"
 
@@ -40,9 +42,10 @@ export getShowID = ( name, year ) ->
             # Return always first result
             showID = response.data["results"][0]["id"]
 
+            log "request", "Fetched show ID #{showID}."
             return showID
         .catch ( error ) ->
-            console.error error
+            log "error", "Error trying to get show ID: \n" + error
             return null
 
 
@@ -75,10 +78,11 @@ export getShowDetails = ( showID ) ->
                     overview: season["overview"]
                     images:
                         poster: BASE_DOMAIN.IMAGE.LOW_RES + season["poster_path"]
-                    
+            
+            log "request", "Fetched show details for show ID #{showDetails.id}."
             return showDetails
         .catch ( error ) ->
-            console.error error
+            log "error", "Error trying to get show details: \n" + error
             return null
 
 
@@ -108,7 +112,8 @@ export getEpisodeDetails = ( showID, seasonNumber, episodeNumber ) ->
                 seasonNumber: response.data["season_number"]
                 image: BASE_DOMAIN.IMAGE.LOW_RES + response.data["still_path"]
 
+            log "request", "Fetched details for episode ID #{episodeDetails.id}."
             return episodeDetails 
         .catch ( error ) ->
-            console.error error
+            log "error", "Error trying to get episode details: \n" + error
             return null

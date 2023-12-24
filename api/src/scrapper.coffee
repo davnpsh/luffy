@@ -41,8 +41,12 @@ getData = ( domain, query ) ->
 #   - links to more info
 export getSchedule = () ->
     
-    scheduleTable = await getData "#{BASE_DOMAIN}/schedule", () ->
-        document.getElementById("full-schedule-table").outerHTML
+    try
+        scheduleTable = await getData "#{BASE_DOMAIN}/schedule", () ->
+            document.getElementById("full-schedule-table").outerHTML
+    catch
+        log "error", "Error trying to fetch schedule from provider."
+        return null
 
     # DOM
     $ = cheerio.load scheduleTable
@@ -69,6 +73,7 @@ export getSchedule = () ->
 
         scheduleItems[currentDay].push show
 
+    log "request", "Fetched schedule items from provider."
     return scheduleItems
 
 
@@ -76,8 +81,12 @@ export getSchedule = () ->
 # Example: https://subsplease.org/shows/shy/
 export getShowEpisodes = ( showURL ) ->
 
-    episodesTable = await getData showURL, () ->
-        document.getElementById("show-release-table").outerHTML
+    try
+        episodesTable = await getData showURL, () ->
+            document.getElementById("show-release-table").outerHTML
+    catch
+        log "error", "Error trying to fetch episodes links from provider."
+        return null
 
     # DOM
     $ = cheerio.load episodesTable
@@ -98,14 +107,19 @@ export getShowEpisodes = ( showURL ) ->
 
         episodesList[episodeNumber] = episodeLinks
 
+    log "request", "Fetched episodes links from provider."
     return episodesList
 
 
 # Minimize load in schedule
 export getShowYear = ( showURL ) ->
 
-    episodesTable = await getData showURL, () ->
-        document.getElementById("show-release-table").outerHTML
+    try
+        episodesTable = await getData showURL, () ->
+            document.getElementById("show-release-table").outerHTML
+    catch
+        log "error", "Error trying to fetch show release year."
+        return null
 
     # DOM
     $ = cheerio.load episodesTable
@@ -115,4 +129,5 @@ export getShowYear = ( showURL ) ->
 
     showYear = millenium + decade
 
+    log "request", "Fetched show release year from provider."
     return showYear
