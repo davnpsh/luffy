@@ -92,10 +92,8 @@ export getShowEpisodes = ( showURL ) ->
         episodeLinks = {}
 
         $(element).find(".links").each (index, element) ->
-            magnetLink = {
-                "#{$(this).text()}": $(this).next("a").attr("href")
-            }
 
+            magnetLink = "#{$(this).text()}": $(this).next("a").attr("href")
             episodeLinks = { ...episodeLinks, ...magnetLink }
 
         episodesList[episodeNumber] = episodeLinks
@@ -104,10 +102,7 @@ export getShowEpisodes = ( showURL ) ->
 
 
 # Minimize load in schedule
-export getShowTitleYear = ( showURL ) ->
-
-    showTitle = await getData showURL, () ->
-        document.getElementsByClassName("entry-title")[0].textContent
+export getShowYear = ( showURL ) ->
 
     episodesTable = await getData showURL, () ->
         document.getElementById("show-release-table").outerHTML
@@ -120,4 +115,4 @@ export getShowTitleYear = ( showURL ) ->
 
     showYear = millenium + decade
 
-    return "#{showTitle} (#{showYear})"
+    return showYear

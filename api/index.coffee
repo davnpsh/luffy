@@ -1,3 +1,6 @@
-import { getShowTitleYear } from "./src/scrapper.coffee"
+import { getShowID, getShowDetails, getEpisodeDetails } from "./src/tmdb.coffee"
 
-console.log await getShowTitleYear "https://subsplease.org/shows/sk8-the-infinity/"
+showID = await getShowID "SHY", "2023"
+episodeDetails = await getEpisodeDetails showID, "1", "1"
+
+console.log episodeDetails
