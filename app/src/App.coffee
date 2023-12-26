@@ -1,1 +1,10 @@
-export App = () -> <h1 className="text-xl font-bold underline text-ctp-pink">Hello world!</h1>
+import "./styles/tailwind.scss"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { Home } from "./pages/home.coffee"
+
+export App = () ->
+    <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<Home />} />
+        </Routes>
+    </BrowserRouter>

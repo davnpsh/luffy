@@ -26,6 +26,7 @@
   "devDependencies": {
     "@catppuccin/tailwindcss": "^0.1.6",
     "@parcel/transformer-coffeescript": "^2.10.3",
+    "@parcel/transformer-sass": "^2.10.3",
     "autoprefixer": "^10.4.16",
     "npm-run-all": "^4.1.5",
     "parcel": "^2.10.3",
@@ -40,6 +41,7 @@
     "express": "^4.18.2",
     "puppeteer": "^21.6.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.1"
   }
 }
