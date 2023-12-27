@@ -25,13 +25,17 @@
   "license": "ISC",
   "devDependencies": {
     "@catppuccin/tailwindcss": "^0.1.6",
+    "@material-tailwind/react": "^2.1.8",
     "@parcel/transformer-coffeescript": "^2.10.3",
     "@parcel/transformer-sass": "^2.10.3",
-    "autoprefixer": "^10.4.16",
+    "coffeescript": "^2.7.0",
     "npm-run-all": "^4.1.5",
     "parcel": "^2.10.3",
     "postcss": "^8.4.32",
+    "prettier": "github:helixbass/prettier#prettier-v2.1.0-dev.100-gitpkg",
+    "prettier-plugin-coffeescript": "^0.1.5",
     "process": "^0.11.10",
+    "react-icons": "^4.12.0",
     "tailwindcss": "^3.4.0"
   },
   "dependencies": {

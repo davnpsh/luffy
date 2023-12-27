@@ -1,10 +1,22 @@
-import "./styles/tailwind.scss"
+import "./styles/general.scss"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { Home } from "./pages/home.coffee"
 
-export App = () ->
+# Pages
+import { Home } from "./pages/home.coffee"
+import { Watch } from "./pages/watch.coffee"
+
+# Components
+import { Navbar } from "./components/navbar.coffee"
+
+export App = ->
+  <>
     <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<Home />} />
-        </Routes>
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/watch" element={<Watch />} />
+        <Route path="*" element={<h1>Not found</h1>} />
+      </Routes>
     </BrowserRouter>
+  </>
