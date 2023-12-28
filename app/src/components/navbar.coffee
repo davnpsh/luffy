@@ -9,6 +9,7 @@ import { Link } from "react-router-dom"
 
 export Navbar = ({ scheduleData, isScheduleLoading }) ->
   [input, setInput] = useState ""
+  [isInputFocused, setIsInputFocused] = useState false
   [filteredResults, setFilteredResults] = useState {}
 
   handleInputChange = (value) ->
@@ -44,12 +45,14 @@ export Navbar = ({ scheduleData, isScheduleLoading }) ->
             icon={<IoIosSearch style={color: "white"} />}
             color="white"
             value={input}
+            onFocus={-> setIsInputFocused true}
+            onBlur={-> setIsInputFocused false}
             onChange={(e) ->
               handleInputChange e.target.value
               return
             }
           />
-          {if input isnt ""
+          {if input isnt "" and isInputFocused
             if isScheduleLoading
               <SearchResultsListSkeleton />
             else
