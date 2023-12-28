@@ -58,7 +58,7 @@ export SearchResultsList = ({ filteredResults, clearInput }) ->
 
           <Link
             key={show.name}
-            to={"/watch?s=#{show.link}"}
+            to={"/watch?s=#{show.identifier}"}
             onClick={clearInput}
           >
             <ListItem className="p-1">
