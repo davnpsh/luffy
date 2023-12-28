@@ -19,16 +19,24 @@ BASE_DOMAIN = "https://subsplease.org"
 
 # 'domain' has to be a domain name
 # 'query' has to be a JS function to evaluate in the browser
-getData = (domain, query) ->
+getData = (domain, queries) ->
   browser = await puppeteer.launch headless: "false"
   page = await browser.newPage()
 
   await page.goto domain, waitUntil: "networkidle0"
-  result = await page.evaluate query
+
+  results = {}
+
+  for key, query of queries
+    try
+      results[key] = await page.evaluate query
+    catch
+      log "error", "Error trying to evaluate query."
+      results[key] = null
 
   await browser.close()
 
-  return result
+  return results
 
 # Entire schedule, including:
 #   - names
@@ -36,10 +44,11 @@ getData = (domain, query) ->
 #   - time
 #   - links to more info
 export getSchedule = ->
+  queries =
+    scheduleTable: -> document.getElementById("full-schedule-table").outerHTML
+
   try
-    scheduleTable =
-      await getData "#{BASE_DOMAIN}/schedule", ->
-        document.getElementById("full-schedule-table").outerHTML
+    { scheduleTable } = await getData "#{BASE_DOMAIN}/schedule", queries
   catch
     log "error", "Error trying to fetch schedule from provider."
     return null
@@ -59,7 +68,13 @@ export getSchedule = ->
         .text()
       return
 
-      # Data parsing
+    identifier = $ element
+      .find "a"
+      .attr "href"
+
+    identifier = identifier.split("/")[-1..][0]
+
+    # Data parsing
     show =
       name:
         $ element
@@ -73,11 +88,8 @@ export getSchedule = ->
         $ element
           .find ".all-schedule-time:first"
           .text()
-      link:
-        BASE_DOMAIN +
-        $ element
-          .find "a"
-          .attr "href"
+      # Return only the show name embedded on the link
+      identifier: identifier
 
     if !scheduleItems.hasOwnProperty currentDay
       scheduleItems[currentDay] = []
@@ -90,10 +102,13 @@ export getSchedule = ->
 # This receives the complete URL to a show
 # Example: https://subsplease.org/shows/shy/
 export getShowEpisodes = (showURL) ->
+  showURL = "#{BASE_DOMAIN}/shows/#{showURL}"
+
+  queries =
+    episodesTable: -> document.getElementById("show-release-table").outerHTML
+
   try
-    episodesTable =
-      await getData showURL, ->
-        document.getElementById("show-release-table").outerHTML
+    { episodesTable } = await getData showURL, queries
   catch
     log "error", "Error trying to fetch episodes links from provider."
     return null
@@ -127,13 +142,17 @@ export getShowEpisodes = (showURL) ->
   return episodesList
 
 # Minimize load in schedule
-export getShowYear = (showURL) ->
+export getShowNameYear = (showURL) ->
+  showURL = "#{BASE_DOMAIN}/shows/#{showURL}"
+
+  queries =
+    showName: -> document.querySelector("h1").textContent
+    episodesTable: -> document.getElementById("show-release-table").outerHTML
+
   try
-    episodesTable =
-      await getData showURL, ->
-        document.getElementById("show-release-table").outerHTML
+    { showName, episodesTable } = await getData showURL, queries
   catch
-    log "error", "Error trying to fetch show release year."
+    log "error", "Error trying to fetch show name."
     return null
 
   # DOM
@@ -148,4 +167,4 @@ export getShowYear = (showURL) ->
   showYear = millenium + decade
 
   log "answer", "Fetched show release year from provider."
-  return showYear
+  return showName: showName, showYear: showYear

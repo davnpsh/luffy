@@ -27,16 +27,16 @@ api.post "/api/show/episodes", (req, res) ->
 # @route POST /api/show/year
 # @param showURL - string (must be from Subsplease)
 # @returns release year of the show - string
-api.post "/api/show/year", (req, res) ->
+api.post "/api/show/nameyear", (req, res) ->
   data = req.body
 
-  log "request", "Request to fetch show release year from #{req.ip}."
-  res.send await scrapper.getShowYear data.showURL
+  log "request", "Request to fetch show name and release year from #{req.ip}."
+  res.send await scrapper.getShowNameYear data.showURL
 
 # @route POST /api/show/id
 # @param showName - string
 #        showYear - string
-# @returns show ID - int32
+# @returns showID - int32
 api.post "/api/show/id", (req, res) ->
   data = req.body
 
