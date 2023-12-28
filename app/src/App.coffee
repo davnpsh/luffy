@@ -1,17 +1,38 @@
-import "./styles/general.scss"
+import { useState, useEffect } from "react"
+import axios from "axios"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-
 # Pages
+import "./styles/general.scss"
 import { Home } from "./pages/home.coffee"
 import { Watch } from "./pages/watch.coffee"
-
 # Components
 import { Navbar } from "./components/navbar.coffee"
 
 export App = ->
+  [scheduleData, setScheduleData] = useState null
+  [isScheduleLoading, setIsScheduleLoading] = useState true
+
+  # Fetch schedule
+  useEffect(
+    ->
+      fetchSchedule = ->
+        axios
+          .get "/api/schedule"
+          .then (response) ->
+            setScheduleData response.data
+            setIsScheduleLoading false
+          .catch (error) ->
+            return error
+
+      #fetchSchedule()
+      return
+  ,
+    []
+  )
+
   <>
     <BrowserRouter>
-      <Navbar />
+      <Navbar scheduleData={scheduleData} isScheduleLoading={isScheduleLoading} />
 
       <Routes>
         <Route path="/" element={<Home />} />
