@@ -1,4 +1,4 @@
-import { SearchResultListSkeleton } from "./searchResultList.coffee"
+import { SearchResultsListSkeleton } from "./searchResultsList.coffee"
 import { useState } from "react"
 import { Input } from "@material-tailwind/react"
 import { IoIosSearch } from "react-icons/io"
@@ -31,7 +31,7 @@ export Navbar = ({ scheduleData, isScheduleLoading }) ->
           />
           {if input isnt ""
             if isScheduleLoading
-              <SearchResultListSkeleton/>
+              <SearchResultsListSkeleton/>
           }
         </div>
       </div>

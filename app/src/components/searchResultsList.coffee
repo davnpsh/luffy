@@ -6,7 +6,7 @@ import {
   Typography
 } from "@material-tailwind/react"
 
-export SearchResultListSkeleton = ->
+export SearchResultsListSkeleton = ->
   <Card className="w-72 absolute">
     <List>
       {Array 3
