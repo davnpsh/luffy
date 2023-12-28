@@ -5,6 +5,7 @@ import {
   Card
   Typography
 } from "@material-tailwind/react"
+import { Link } from "react-router-dom"
 
 export SearchResultsListSkeleton = ->
   <Card className="w-72 absolute">
@@ -12,7 +13,7 @@ export SearchResultsListSkeleton = ->
       {Array 3
         .fill()
         .map (_, index) ->
-          <ListItem>
+          <ListItem key={index}>
             <ListItemPrefix>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -40,5 +41,45 @@ export SearchResultsListSkeleton = ->
             </div>
           </ListItem>
         }
+    </List>
+  </Card>
+
+export SearchResultsList = ({ filteredResults, clearInput }) ->
+  renderedCount = 0
+  <Card className="w-72 absolute">
+    <List>
+      {Object.keys(filteredResults).map (day) ->
+        filteredResults[day].map (show) ->
+          # Only render first 3 shows
+          if renderedCount >= 3
+            return
+
+          renderedCount += 1
+
+          <Link
+            key={show.name}
+            to={"/watch?s=#{show.link}"}
+            onClick={clearInput}
+          >
+            <ListItem className="p-1">
+              <ListItemPrefix>
+                <img
+                  className="w-12 object-cover object-center"
+                  src={show.picture}
+                  alt={show.name}
+                />
+              </ListItemPrefix>
+              <div>
+                <Typography
+                  as="div"
+                  variant="paragraph"
+                  className="mb-4 h-8 w-44 font-normal text-sm"
+                >
+                  {show.name}
+                </Typography>
+              </div>
+            </ListItem>
+          </Link>
+      }
     </List>
   </Card>
