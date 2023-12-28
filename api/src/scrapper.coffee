@@ -123,6 +123,12 @@ export getShowEpisodes = (showURL) ->
       .find ".episode-title:first"
       .text()[-2..]
 
+    # Control version
+    if "v" in episodeNumber
+      episodeNumber = $ element
+        .find ".episode-title:first"
+        .text()[-4..-3]
+
     # Data parsing
     episodeLinks = {}
 
