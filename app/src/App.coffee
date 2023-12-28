@@ -24,7 +24,7 @@ export App = ->
           .catch (error) ->
             return error
 
-      fetchSchedule()
+      #fetchSchedule()
       return
   ,
     []
@@ -32,10 +32,21 @@ export App = ->
 
   <>
     <BrowserRouter>
-      <Navbar scheduleData={scheduleData} isScheduleLoading={isScheduleLoading} />
+      <Navbar
+        scheduleData={scheduleData}
+        isScheduleLoading={isScheduleLoading}
+      />
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <Home
+              scheduleData={scheduleData}
+              isScheduleLoading={isScheduleLoading}
+            />
+          }
+        />
         <Route path="/watch" element={<Watch />} />
         <Route path="*" element={<h1>Not found</h1>} />
       </Routes>

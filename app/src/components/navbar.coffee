@@ -38,7 +38,7 @@ export Navbar = ({ scheduleData, isScheduleLoading }) ->
         >
           Schedule
         </Link>
-        <div className="relative w-72">
+        <div className="relative w-72 z-50">
           <Input
             label="Search"
             icon={<IoIosSearch style={color: "white"} />}
