@@ -2,7 +2,6 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 # Pages
-import "./styles/general.scss"
 import { Home } from "./pages/home.coffee"
 import { Watch } from "./pages/watch.coffee"
 # Components
