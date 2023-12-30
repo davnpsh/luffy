@@ -148,7 +148,7 @@ export getShowEpisodes = (showURL) ->
   return episodesList
 
 # Minimize load in schedule
-export getShowNameYear = (showURL) ->
+export getShowProfile = (showURL) ->
   showURL = "#{BASE_DOMAIN}/shows/#{showURL}"
 
   queries =
@@ -158,7 +158,7 @@ export getShowNameYear = (showURL) ->
   try
     { showName, episodesTable } = await getData showURL, queries
   catch
-    log "error", "Error trying to fetch show name."
+    log "error", "Error trying to fetch show name and release year."
     return null
 
   # DOM
@@ -172,5 +172,5 @@ export getShowNameYear = (showURL) ->
 
   showYear = millenium + decade
 
-  log "answer", "Fetched show release year from provider."
+  log "answer", "Fetched show name and release year from provider."
   return showName: showName, showYear: showYear
