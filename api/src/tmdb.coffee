@@ -17,7 +17,7 @@ API_KEY = process.env.TMDB_API_KEY
 
 # It requires name and year since
 # filtering is not viable
-export getShowID = (name, year) ->
+export getShowID = (name, year = null) ->
   options =
     method: "GET"
     url: """
