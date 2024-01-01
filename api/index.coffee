@@ -1,6 +1,7 @@
 import { log } from "./src/logger.coffee"
 import * as scrapper from "./src/scrapper.coffee"
 import * as tmdb from "./src/tmdb.coffee"
+import * as custom from "./src/custom.coffee"
 import express from "express"
 
 ADDRESS = "127.0.0.1"
@@ -57,7 +58,7 @@ api.post "/api/show/details", (req, res) ->
 #        seasonNumber - int32
 #        episodeNumber - int32
 # @returns {Object} with episode details
-api.post "/api/show/episode_details", (req, res) ->
+api.post "/api/show/episode/details", (req, res) ->
   data = req.body
 
   log "request", "Request to fetch episode details from #{req.ip}."
@@ -68,6 +69,15 @@ api.post "/api/show/episode_details", (req, res) ->
       data.episodeNumber
     )
   )
+
+# @route POST /api/show/episode_details
+# @param shows - Object
+# @returns {Object} with carousel data
+api.post "/api/carousel", (req, res) ->
+  data = req.body
+
+  log "request", "Request to fetch carousel data from #{req.ip}"
+  res.send await custom.getCarouselData data.shows
 
 api.listen PORT, ADDRESS, ->
   log "access", "Listening on http://#{ADDRESS}:#{PORT}/api"

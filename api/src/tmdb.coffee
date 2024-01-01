@@ -39,7 +39,8 @@ export getShowID = (name, year) ->
       showID = response.data["results"][0]["id"]
 
       log "answer", "Fetched show ID #{showID}."
-      return showID
+      return
+        id: showID
     .catch (error) ->
       log "error", "Error trying to get show ID: \n" + error
       return null

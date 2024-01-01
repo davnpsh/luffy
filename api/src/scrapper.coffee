@@ -173,4 +173,4 @@ export getShowProfile = (showURL) ->
   showYear = millenium + decade
 
   log "answer", "Fetched show name and release year from provider."
-  return showName: showName, showYear: showYear
+  return name: showName, year: showYear
