@@ -1,6 +1,11 @@
-import { CarouselSkeleton } from "../components/carousel.coffee"
+import { CarouselSkeleton, ShowsCarousel } from "../components/carousel.coffee"
 
 export Home = ({ scheduleData, isScheduleLoading }) ->
-  <>
-    <CarouselSkeleton />
-  </>
+  <section>
+    {
+      if isScheduleLoading
+        <CarouselSkeleton />
+      else
+        <ShowsCarousel scheduleData={scheduleData} />
+    }
+  </section>

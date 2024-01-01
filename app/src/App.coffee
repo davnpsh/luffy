@@ -23,7 +23,7 @@ export App = ->
           .catch (error) ->
             return error
 
-      #fetchSchedule()
+      fetchSchedule()
       return
   ,
     []
