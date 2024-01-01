@@ -2,12 +2,20 @@ import * as scrapper from "./scrapper.coffee"
 import * as tmdb from "./tmdb.coffee"
 import { log } from "./logger.coffee"
 
+removeSeason = (profile) ->
+  console.log profile
+  profile.name = profile.name.replace(/ S\d+$/, "")
+  profile
+
 export getCarouselData = (shows) ->
   try
     data = []
 
     for show in shows
-      profile = await scrapper.getShowProfile show.identifier
+      profile = removeSeason await scrapper.getShowProfile show.identifier
+
+      console.log profile
+
       showID = await tmdb.getShowID profile.name, show.year
       details = await tmdb.getShowDetails showID.id
 
