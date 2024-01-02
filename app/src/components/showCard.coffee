@@ -57,7 +57,7 @@ export ShowCard = ({ url, picurl, name }) ->
   <Link to={"/watch?s=#{url}"} className="inline-block">
     <Card
       shadow={false}
-      className="relative grid h-[318px] w-[225px] items-end overflow-hidden text-left"
+      className="relative grid h-[318px] w-[225px] items-end overflow-hidden text-left mr-10"
     >
       <CardHeader
         floated={false}
