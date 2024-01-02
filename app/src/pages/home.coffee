@@ -1,4 +1,4 @@
-import { ScheduleList } from "../components/scheduleList.coffee"
+import { ScheduleList, ScheduleListSkeleton } from "../components/scheduleList.coffee"
 import { CarouselSkeleton, ShowsCarousel } from "../components/carousel.coffee"
 import { ScheduleSlider, SliderSkeleton } from "../components/slider.coffee"
 
@@ -8,6 +8,7 @@ export Home = ({ scheduleData, isScheduleLoading }) ->
       <>
         <CarouselSkeleton />
         <SliderSkeleton />
+        <ScheduleListSkeleton />
       </>
     else
       <>

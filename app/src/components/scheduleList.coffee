@@ -1,8 +1,22 @@
 import Slider from "react-slick"
 import { ShowCard } from "./showCard.coffee"
-import { Typography } from "@material-tailwind/react"
+import { Typography, Spinner } from "@material-tailwind/react"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+
+export ScheduleListSkeleton = ->
+  <section className="container mx-auto mt-10 mb-10" id="schedule">
+    <Typography
+      variant="h2"
+      color="white"
+      className="mb-4 ml-5 md:ml-0 text-2xl md:text-3xl text-center"
+    >
+      Schedule
+    </Typography>
+    <div className="grid place-items-center mt-3">
+      <Spinner className="h-10 w-10" />
+    </div>
+  </section>
 
 ScheduleDay = ({ day, shows }) ->
   settings =
