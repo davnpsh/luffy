@@ -46,7 +46,16 @@ export Navbar = ({ scheduleData, isScheduleLoading }) ->
             color="white"
             value={input}
             onFocus={-> setIsInputFocused true}
-            onBlur={-> setIsInputFocused false}
+            onBlur={->
+              setTimeout(
+                ->
+                  setIsInputFocused false
+                  return
+              ,
+                200
+              )
+              return
+            }
             onChange={(e) ->
               handleInputChange e.target.value
               return
