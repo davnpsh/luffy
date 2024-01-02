@@ -9,7 +9,7 @@ import { Link } from "react-router-dom"
 export CardSkeleton = ->
   <Card
     shadow={false}
-    className="relative grid h-[318px] w-[225px] items-end overflow-hidden text-left"
+    className="relative grid h-[318px] w-[225px] items-end overflow-hidden text-left animate-pulse"
   >
     <CardHeader
       floated={false}
@@ -35,6 +35,22 @@ export CardSkeleton = ->
       </div>
       <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50" />
     </CardHeader>
+    <CardBody className="relative py-14 px-6 md:px-12">
+        <Typography
+          variant="h6"
+          color="white"
+          className="absolute left-3 bottom-10 h-3 w-44 rounded-full bg-gray-500"
+        >
+          &nbsp;
+        </Typography>
+        <Typography
+          variant="h6"
+          color="white"
+          className="absolute left-3 bottom-5 h-3 w-40 rounded-full bg-gray-500"
+        >
+          &nbsp;
+        </Typography>
+      </CardBody>
   </Card>
 
 export ShowCard = ({ url, picurl, name }) ->
