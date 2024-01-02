@@ -1,3 +1,3 @@
 # luffy
 
-> Self-hosted &amp; automatic anime web platform for seasonals
+> Self-hosted automatic anime web indexer for seasonals
