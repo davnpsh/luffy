@@ -1,30 +1,28 @@
-import React, { Component } from "react"
 import Slider from "react-slick"
-
-# Styles
+import { ShowCard } from "./showCard.coffee"
+import { Typography } from "@material-tailwind/react"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
-import { ShowCard } from "./showCard.coffee"
-import { Typography } from "@material-tailwind/react"
-
-settings =
-  dots: false
-  infinite: true
-  slidesToShow: 5
-  slidesToScroll: 1
-  autoplay: true
-  speed: 2000
-  autoplaySpeed: 2000
-  pauseOnHover: true
-  cssEase: "linear"
-
 LoadedSlider = ({ scheduleData }) ->
+  settings =
+    dots: false
+    infinite: true
+    slidesToShow: 5
+    slidesToScroll: 1
+    autoplay: true
+    speed: 500
+    autoplaySpeed: 2000
+
   <div>
     <Slider {...settings}>
       {Object.keys(scheduleData).map (day) ->
         scheduleData[day].map (show) ->
-          <ShowCard url={show.identifier} picurl={show.picture} name={show.name}/>
+          <ShowCard
+            url={show.identifier}
+            picurl={show.picture}
+            name={show.name}
+          />
       }
     </Slider>
   </div>
