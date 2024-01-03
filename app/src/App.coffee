@@ -6,6 +6,7 @@ import { Home } from "./pages/home.coffee"
 import { Watch } from "./pages/watch.coffee"
 # Components
 import { Navbar } from "./components/navbar.coffee"
+import { Footer } from "./components/footer.coffee"
 
 export App = ->
   [scheduleData, setScheduleData] = useState null
@@ -49,5 +50,7 @@ export App = ->
         <Route path="/watch" element={<Watch />} />
         <Route path="*" element={<h1>Not found</h1>} />
       </Routes>
+
+      <Footer />
     </BrowserRouter>
   </>
