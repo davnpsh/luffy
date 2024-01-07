@@ -24,6 +24,22 @@ ScheduleDay = ({ day, shows }) ->
     slidesToShow: 5
     slidesToScroll: 1
     speed: 500
+    responsive: [
+      {
+      breakpoint: 850
+      settings:
+        slidesToShow: 4
+        arrows: false
+        touchMove: true
+      }
+      {
+      breakpoint: 640
+      settings:
+        slidesToShow: 3
+        arrows: false
+        touchMove: true
+      }
+    ]
 
   <div className="mt-4 mb-4">
     <Typography
@@ -33,25 +49,69 @@ ScheduleDay = ({ day, shows }) ->
     >
       {day}
     </Typography>
-    {if shows.length < 5
-      shows.map((show) ->
-        <ShowCard
-          url={show.identifier}
-          picurl={show.picture}
-          name={show.name}
-        />
-      )
-    else
-      <Slider {...settings}>
-        {shows.map (show) ->
+    <div className="hidden lg:block">
+      {if shows.length < 5
+        shows.map((show) ->
           <ShowCard
             url={show.identifier}
             picurl={show.picture}
             name={show.name}
           />
-        }
-      </Slider>
-    }
+        )
+      else
+        <Slider {...settings}>
+          {shows.map (show) ->
+            <ShowCard
+              url={show.identifier}
+              picurl={show.picture}
+              name={show.name}
+            />
+          }
+        </Slider>
+      }
+    </div>
+    <div className="hidden md:block lg:hidden">
+      {if shows.length < 4
+        shows.map((show) ->
+          <ShowCard
+            url={show.identifier}
+            picurl={show.picture}
+            name={show.name}
+          />
+        )
+      else
+        <Slider {...settings}>
+          {shows.map (show) ->
+            <ShowCard
+              url={show.identifier}
+              picurl={show.picture}
+              name={show.name}
+            />
+          }
+        </Slider>
+      }
+    </div>
+    <div className="block md:hidden">
+      {if shows.length < 3
+        shows.map((show) ->
+          <ShowCard
+            url={show.identifier}
+            picurl={show.picture}
+            name={show.name}
+          />
+        )
+      else
+        <Slider {...settings}>
+          {shows.map (show) ->
+            <ShowCard
+              url={show.identifier}
+              picurl={show.picture}
+              name={show.name}
+            />
+          }
+        </Slider>
+      }
+    </div>
   </div>
 
 export ScheduleList = ({ scheduleData }) ->

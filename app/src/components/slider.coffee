@@ -13,6 +13,22 @@ LoadedSlider = ({ scheduleData }) ->
     autoplay: true
     speed: 500
     autoplaySpeed: 2000
+    responsive: [
+      {
+      breakpoint: 850
+      settings:
+        slidesToShow: 4
+        arrows: false
+        touchMove: true
+      }
+      {
+      breakpoint: 640
+      settings:
+        slidesToShow: 3
+        arrows: false
+        touchMove: true
+      }
+    ]
 
   <div>
     <Slider {...settings}>
@@ -42,7 +58,7 @@ LoadingSlider = ->
       {Array 6
         .fill()
         .map (_, index) ->
-          <CardSkeleton key={index}/>
+          <CardSkeleton key={index} />
         }
     </Slider>
   </div>

@@ -57,7 +57,7 @@ export ShowCard = ({ url, picurl, name }) ->
   <Link to={"/watch?s=#{url}"} className="inline-block">
     <Card
       shadow={false}
-      className="relative grid h-[318px] w-[225px] items-end overflow-hidden text-left mr-10"
+      className="relative grid h-[170px] w-[127.5px] rounded-none sm:rounded-xl md:h-[238px] md:w-[169px] lg:h-[318px] lg:w-[225px] items-end overflow-hidden text-left mr-3 lg:mr-10"
     >
       <CardHeader
         floated={false}
@@ -66,9 +66,9 @@ export ShowCard = ({ url, picurl, name }) ->
         className="absolute inset-0 m-0 h-full w-full rounded-none"
       >
         <img src={picurl} alt={name} className="h-full w-full object-cover" />
-        <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50" />
+        <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50 hidden sm:block" />
       </CardHeader>
-      <CardBody className="relative py-14 px-6 md:px-12">
+      <CardBody className="relative py-14 px-6 md:px-12 hidden sm:block">
         <Typography
           variant="h6"
           color="white"
