@@ -9,7 +9,7 @@ export ScheduleListSkeleton = ->
     <Typography
       variant="h2"
       color="white"
-      className="mb-4 ml-5 md:ml-0 text-2xl md:text-3xl text-center"
+      className="mb-4 md:ml-0 text-2xl md:text-3xl text-center"
     >
       Schedule
     </Typography>
@@ -119,7 +119,7 @@ export ScheduleList = ({ scheduleData }) ->
     <Typography
       variant="h2"
       color="white"
-      className="mb-4 ml-5 md:ml-0 text-2xl md:text-3xl text-center"
+      className="mb-4 md:ml-0 text-2xl md:text-3xl text-center"
     >
       Schedule
     </Typography>

@@ -9,7 +9,7 @@ import { Link } from "react-router-dom"
 export CardSkeleton = ->
   <Card
     shadow={false}
-    className="relative grid h-[318px] w-[225px] items-end overflow-hidden text-left animate-pulse"
+    className="relative grid items-end overflow-hidden text-left animate-pulse rounded-none sm:rounded-xl h-[170px] w-[127.5px] md:h-[238px] md:w-[169px] lg:h-[318px] lg:w-[225px]"
   >
     <CardHeader
       floated={false}
@@ -39,14 +39,14 @@ export CardSkeleton = ->
         <Typography
           variant="h6"
           color="white"
-          className="absolute left-3 bottom-10 h-3 w-44 rounded-full bg-gray-500"
+          className="absolute left-3 bottom-10 h-3 hidden md:block md:w-28 lg:w-44 rounded-full bg-gray-500"
         >
           &nbsp;
         </Typography>
         <Typography
           variant="h6"
           color="white"
-          className="absolute left-3 bottom-5 h-3 w-40 rounded-full bg-gray-500"
+          className="absolute left-3 bottom-5 h-3 hidden md:block md:w-24 lg:w-40 rounded-full bg-gray-500"
         >
           &nbsp;
         </Typography>
