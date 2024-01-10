@@ -3,7 +3,7 @@ import { CarouselSkeleton, ShowsCarousel } from "../components/carousel.coffee"
 import { ScheduleSlider, SliderSkeleton } from "../components/slider.coffee"
 
 export Home = ({ scheduleData, isScheduleLoading }) ->
-  <div>
+  <div className="flex-1">
     {if isScheduleLoading
       <>
         <CarouselSkeleton />
