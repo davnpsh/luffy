@@ -36,7 +36,7 @@ api.post "/api/show/profile", (req, res) ->
 
 # @route POST /api/show/id
 # @param showName - string
-#        showYear - string
+#        showYear - string (optional)
 # @returns showID - int32
 api.post "/api/show/id", (req, res) ->
   data = req.body
