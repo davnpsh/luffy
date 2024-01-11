@@ -119,15 +119,20 @@ export getShowEpisodes = (showURL) ->
   episodesList = {}
 
   $("tr").each (index, element) ->
-    episodeNumber = $ element
+    episodeNumberMatch = $ element
       .find ".episode-title:first"
-      .text()[-2..]
+      .text()
+      .match(/—\s*(.+)/)[1]
 
-    # Control version
-    if "v" in episodeNumber
-      episodeNumber = $ element
-        .find ".episode-title:first"
-        .text()[-4..-3]
+    # Verify episode number
+    if /^\d+$/.test episodeNumberMatch
+      episodeNumber = episodeNumberMatch
+    else
+      # Episode number version control
+      if /^\d+v\d+$/.test episodeNumberMatch
+        episodeNumber = episodeNumberMatch.match(/(.+)v/)[1]
+      else
+        return
 
     # Data parsing
     episodeLinks = {}
