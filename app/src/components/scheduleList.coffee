@@ -56,6 +56,7 @@ ScheduleDay = ({ day, shows }) ->
             url={show.identifier}
             picurl={show.picture}
             name={show.name}
+            key={show}
           />
         )
       else
@@ -65,6 +66,7 @@ ScheduleDay = ({ day, shows }) ->
               url={show.identifier}
               picurl={show.picture}
               name={show.name}
+              key={show}
             />
           }
         </Slider>
@@ -77,6 +79,7 @@ ScheduleDay = ({ day, shows }) ->
             url={show.identifier}
             picurl={show.picture}
             name={show.name}
+            key={show}
           />
         )
       else
@@ -86,6 +89,7 @@ ScheduleDay = ({ day, shows }) ->
               url={show.identifier}
               picurl={show.picture}
               name={show.name}
+              key={show}
             />
           }
         </Slider>
@@ -98,6 +102,7 @@ ScheduleDay = ({ day, shows }) ->
             url={show.identifier}
             picurl={show.picture}
             name={show.name}
+            key={show}
           />
         )
       else
@@ -107,6 +112,7 @@ ScheduleDay = ({ day, shows }) ->
               url={show.identifier}
               picurl={show.picture}
               name={show.name}
+              key={show}
             />
           }
         </Slider>
@@ -125,7 +131,7 @@ export ScheduleList = ({ scheduleData }) ->
     </Typography>
     <div>
       {Object.keys(scheduleData).map (day) ->
-        <ScheduleDay day={day} shows={scheduleData[day]} />
+        <ScheduleDay day={day} shows={scheduleData[day]} key={day} />
       }
     </div>
   </section>
