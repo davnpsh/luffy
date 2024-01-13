@@ -58,7 +58,7 @@ api.post "/api/show/details", (req, res) ->
 #        seasonNumber - int32
 #        episodeNumber - int32
 # @returns {Object} with episode details
-api.post "/api/show/episode/details", (req, res) ->
+api.post "/api/episode/details", (req, res) ->
   data = req.body
 
   log "request", "Request to fetch episode details from #{req.ip}."
@@ -70,7 +70,7 @@ api.post "/api/show/episode/details", (req, res) ->
     )
   )
 
-# @route POST /api/show/episode_details
+# @route POST /api/carousel
 # @param shows - Object
 # @returns {Object} with carousel data
 api.post "/api/carousel", (req, res) ->
@@ -78,6 +78,15 @@ api.post "/api/carousel", (req, res) ->
 
   log "request", "Request to fetch carousel data from #{req.ip}"
   res.send await custom.getCarouselData data.shows
+
+# @route POST /api/watch/details
+# @param showURL - string (must be from Subsplease)
+# @returns {Object} with show details
+api.post "/api/watch/details", (req, res) ->
+  data = req.body
+
+  log "request", "Request to fetch watch data from #{req.ip}"
+  res.send await custom.getWatchData data.showURL
 
 api.listen PORT, ADDRESS, ->
   log "access", "Listening on http://#{ADDRESS}:#{PORT}/api"
