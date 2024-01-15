@@ -8,7 +8,7 @@ import {
 import { Link } from "react-router-dom"
 
 export SearchResultsListSkeleton = ->
-  <Card className="w-72 absolute">
+  <Card className="w-60 md:w-72 absolute">
     <List>
       {Array 3
         .fill()
@@ -46,7 +46,7 @@ export SearchResultsListSkeleton = ->
 
 export SearchResultsList = ({ filteredResults, clearInput }) ->
   renderedCount = 0
-  <Card className="w-72 absolute">
+  <Card className="w-60 md:w-72 absolute">
     <List>
       {Object.keys(filteredResults).map (day) ->
         filteredResults[day].map (show) ->
@@ -64,7 +64,7 @@ export SearchResultsList = ({ filteredResults, clearInput }) ->
             <ListItem className="p-1">
               <ListItemPrefix>
                 <img
-                  className="w-12 object-cover object-center"
+                  className="w-12 object-cover object-center hidden md:block"
                   src={show.picture}
                   alt={show.name}
                 />
