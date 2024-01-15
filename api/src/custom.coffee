@@ -47,3 +47,20 @@ export getWatchData = (showURL) ->
   catch
     log "error", "Error trying to fetch watch data."
     return null
+
+export getEpisodesList = (showID, season, showURL) ->
+  try
+    episodes = await scrapper.getShowEpisodes showURL
+
+    episodesList = {}
+
+    for own episode, magnets of episodes
+      episodeDetails = await tmdb.getEpisodeDetails showID, season, episode
+      episodesList[episode] = episodeDetails
+
+    log "answer", "Fetched episodes list."
+    return episodesList
+
+  catch
+    log "error", "Error trying to fetch episodes list."
+    return null

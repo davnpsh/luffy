@@ -16,10 +16,10 @@ api.get "/api/schedule", (req, res) ->
   log "request", "Request to fetch schedule from #{req.ip}."
   res.send await scrapper.getSchedule()
 
-# @route POST /api/show/episodes
+# @route POST /api/episodes/magnets
 # @param showURL - string (must be from Subsplease)
 # @returns {Object} with episodes magnet links
-api.post "/api/show/episodes", (req, res) ->
+api.post "/api/episodes/magnets", (req, res) ->
   data = req.body
 
   log "request", "Request to fetch episodes from #{req.ip}."
@@ -87,6 +87,15 @@ api.post "/api/watch/details", (req, res) ->
 
   log "request", "Request to fetch watch data from #{req.ip}"
   res.send await custom.getWatchData data.showURL
+
+# @route POST /api/episodes/list
+# @param showURL - string (must be from Subsplease)
+# @returns {Object} with episodes list with details
+api.post "/api/episodes/list", (req, res) ->
+  data = req.body
+
+  log "request", "Request to fetch episodes list from #{req.ip}"
+  res.send await custom.getEpisodesList data.showID, data.season, data.showURL
 
 api.listen PORT, ADDRESS, ->
   log "access", "Listening on http://#{ADDRESS}:#{PORT}/api"
