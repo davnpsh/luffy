@@ -134,6 +134,8 @@ export getShowEpisodes = (showURL) ->
       else
         return
 
+    episodeNumber = parseInt(episodeNumber)
+
     # Data parsing
     episodeLinks = {}
 
