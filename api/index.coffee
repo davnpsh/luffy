@@ -104,13 +104,13 @@ api.post "/api/episodes/list", (req, res) ->
 
 # @route POST /api/episode/stream
 # @param showURL - string (must be from Subsplease)
-#        episodeNumber - int32
+#        episodeNumber - string
 # @returns {Object} with video path
 api.post "/api/episode/stream", (req, res) ->
   data = req.body
 
   log "request", "Request to stream"
-  res.send await stream.stream data.showURL, data.episodeNumber
+  res.send await stream.stream data.showURL, data.episodeNumber, data.quality
 
 api.listen PORT, ADDRESS, ->
   log "access", "Listening on http://#{ADDRESS}:#{PORT}/api"
