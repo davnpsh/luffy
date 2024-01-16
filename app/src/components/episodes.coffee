@@ -3,7 +3,6 @@ import { useState, useEffect } from "react"
 import {
   List
   ListItem
-  ListItemPrefix
   Typography
   Spinner
 } from "@material-tailwind/react"
