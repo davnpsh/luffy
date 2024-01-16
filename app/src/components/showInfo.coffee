@@ -1,3 +1,4 @@
+import { EpisodesList } from "./episodes.coffee"
 import { Typography, Spinner } from "@material-tailwind/react"
 
 HeaderSkeleton = ->
@@ -52,7 +53,7 @@ MainSkeleton = ->
       <div className="h-full lg:w-1/3 relative flex justify-center">
         <div className="w-4/5 object-cover rounded-lg absolute -top-48 hidden lg:block pt-[120%]">
           <div className="bg-gray-300 place-items-center animate-pulse w-full h-full grid absolute top-0">
-            <Spinner className="h-12 w-12"/>
+            <Spinner className="h-12 w-12" />
           </div>
         </div>
       </div>
@@ -124,6 +125,15 @@ Main = ({ watchData }) ->
             overview
           }
         </Typography>
+        <Typography
+          as="div"
+          variant="h3"
+          color="white"
+          className="font-normal mt-10"
+        >
+          Episodes
+        </Typography>
+        <EpisodesList watchData={watchData} />
       </div>
     </div>
   </section>

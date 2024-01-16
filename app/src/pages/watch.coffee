@@ -37,7 +37,8 @@ export Watch = ->
   else
     <div className="flex-1">
       {if episodeNumber
-        <></>
+        <>
+        </>
       else
         <>
           <ShowInfo
