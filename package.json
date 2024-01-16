@@ -48,7 +48,6 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.1",
     "react-slick": "^0.29.0",
-    "slick-carousel": "^1.8.1",
-    "webtorrent": "^2.1.33"
+    "slick-carousel": "^1.8.1"
   }
 }

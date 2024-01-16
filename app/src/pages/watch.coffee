@@ -1,3 +1,4 @@
+import { EpisodeVideo } from "../components/episodeVideo.coffee"
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { ShowInfo } from "../components/showInfo.coffee"
@@ -37,8 +38,7 @@ export Watch = ->
   else
     <div className="flex-1">
       {if episodeNumber
-        <>
-        </>
+        <EpisodeVideo />
       else
         <>
           <ShowInfo
