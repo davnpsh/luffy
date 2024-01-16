@@ -3,6 +3,7 @@ import * as scrapper from "./src/scrapper.coffee"
 import * as tmdb from "./src/tmdb.coffee"
 import * as custom from "./src/custom.coffee"
 import express from "express"
+import * as stream from "./src/stream.coffee"
 
 ADDRESS = "127.0.0.1"
 PORT = 3000
@@ -10,8 +11,12 @@ PORT = 3000
 api = express()
 api.use express.json()
 
+# @route GET /api/video
+# @returns video file
+api.use "/api/video", express.static "./public"
+
 # @route GET /api/schedule
-# @returns {Object} with schedule information
+# @returns {Object} with schedule
 api.get "/api/schedule", (req, res) ->
   log "request", "Request to fetch schedule from #{req.ip}."
   res.send await scrapper.getSchedule()
@@ -96,6 +101,16 @@ api.post "/api/episodes/list", (req, res) ->
 
   log "request", "Request to fetch episodes list from #{req.ip}"
   res.send await custom.getEpisodesList data.showID, data.season, data.showURL
+
+# @route POST /api/episode/stream
+# @param showURL - string (must be from Subsplease)
+#        episodeNumber - int32
+# @returns {Object} with video path
+api.post "/api/episode/stream", (req, res) ->
+  data = req.body
+
+  log "request", "Request to stream"
+  res.send await stream.stream data.showURL, data.episodeNumber
 
 api.listen PORT, ADDRESS, ->
   log "access", "Listening on http://#{ADDRESS}:#{PORT}/api"
