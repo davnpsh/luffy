@@ -15,11 +15,11 @@ EpisodesListSkeleton = ->
 
 Episode = ({ image, number, title, description, link }) ->
   <a href={link}>
-    <ListItem className="h-52 flex flex-row gap-5 group">
-      <div className="w-1/3 h-full flex items-center">
-        <img src={image} className="object-cover " />
+    <ListItem className="flex flex-col md:flex-row gap-5 group">
+      <div className="md:w-1/3 h-full flex items-center">
+        <img src={image} className="object-cover" />
       </div>
-      <div className="w-2/3">
+      <div className="md:w-2/3">
         <Typography variant="h6" color="white" className="mb-2 group-hover:text-ctp-base transition-all ease-out">
           {number}. {title}
         </Typography>
