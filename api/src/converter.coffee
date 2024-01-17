@@ -13,8 +13,8 @@ virtualPath = "/api/video"
 
 # Video stats
 oldFormat = ".mkv"
-newFormat = ".mp4"
-subsFormat = ".srt"
+newFormat = ".webm"
+subsFormat = ".vtt"
 
 downloadBinary = ->
   new Promise (resolve, reject) ->
@@ -44,7 +44,7 @@ downloadBinary = ->
         log "ffmpeg", "Binary found."
         resolve()
 
-convertToMP4 = (fileName) ->
+convertVideo = (fileName) ->
   # Create folder if it doesnt exist
   if !fs.existsSync path
     fs.mkdirSync path
@@ -55,11 +55,15 @@ convertToMP4 = (fileName) ->
     inputFile = "#{path}/#{fileName}"
     outputFile = "#{path}/#{newFileName}"
 
-    command = "#{binExecutable} -i '#{inputFile}' -map 0 -c copy -c:a aac '#{outputFile}'"
+    # For webm (with hardsub)
+    command = "#{binExecutable} -i '#{inputFile}' -vf -filter_complex \"subtitles='#{inputFile}'\" -c:v libvpx -crf 10 -b:v 1M -c:a libvorbis -y '#{outputFile}'"
+
+    # For mp4
+    #command = "#{binExecutable} -i '#{inputFile}' -map 0 -c copy -c:a aac '#{outputFile}'"
 
     log(
       "ffmpeg"
-      "Attemping to convert from video source from #{oldFormat} to #{newFormat}."
+      "Attempting to convert from video source from #{oldFormat} to #{newFormat}."
     )
     exec command, (err, stdout, stderr) ->
       if err
@@ -82,7 +86,7 @@ extractSubtitles = (fileName) ->
 
     command = "#{binExecutable} -i '#{inputFile}' -map 0:s:0 -y '#{outputFile}'"
 
-    log "ffmpeg", "Attemping to extract subtitles from media source."
+    log "ffmpeg", "Attempting to extract subtitles from media source."
     exec command, (err, stdout, stderr) ->
       if err
         log "ffmpeg error", err.message
@@ -97,13 +101,11 @@ export convert = (fileName) ->
     await downloadBinary()
 
     # Uncomment this block to ensure compatibility with all web browsers. It migh be very slow, tho
-    ###
     log "answer", "Retrieved subtitles from media source."
-    videoFile = await convertToMP4 fileName
+    videoFile = await convertVideo fileName
     videoFilePath = "#{virtualPath}/#{videoFile}"
-    ###
     # Comment the following line if you uncommented the previous block
-    videoFilePath = "#{virtualPath}/#{fileName}"
+    #videoFilePath = "#{virtualPath}/#{fileName}"
 
     subsFile = await extractSubtitles fileName
     subsFilePath = "#{virtualPath}/#{subsFile}"
