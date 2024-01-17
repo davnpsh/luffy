@@ -1,21 +1,20 @@
 import { log } from "./logger.coffee"
 import * as scrapper from "./scrapper.coffee"
 import WebTorrent from "webtorrent-hybrid"
+import * as ffmpeg from "./converter.coffee"
 
 client = new WebTorrent()
 
 # Relative path to the root folder
 path = "./public"
-virtualPath = "/api/video"
 
-serve = (torrent) ->
+getFileName = (torrent) ->
   new Promise (resolve, reject) ->
     torrent.on "done", ->
       # There will be only 1 file
       fileName = torrent.files[0].name
-      filePath = "#{virtualPath}/#{fileName}"
 
-      resolve filePath
+      resolve fileName
 
 download = (magnetURI) ->
   torrent = await client.add magnetURI, path: path
@@ -48,12 +47,15 @@ getMagnetURI = (showURL, episodeNumber, quality) ->
           return magnetURI
 
 export stream = (showURL, episodeNumber, quality) ->
-
   try
     magnetURI = await getMagnetURI showURL, episodeNumber, quality
     torrent = await download magnetURI
-    filePath = await serve torrent
+    fileName = await getFileName torrent
 
-    return "filePath": filePath
+    convertedFiles = ffmpeg.convert fileName
+
+    log "answer", "Fetched media files to stream."
+    return convertedFiles
   catch
+    log "error", "Error trying to fetch media files to stream."
     return null
