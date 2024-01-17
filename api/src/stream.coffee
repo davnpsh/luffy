@@ -9,11 +9,13 @@ client = new WebTorrent()
 # Relative path to the root folder
 path = "./public"
 
+# Get filename and DESTROY (it would be nice to seed, but webtorrent doesnt handle duplicates very well)
 getFileName = (torrent) ->
   new Promise (resolve, reject) ->
     torrent.on "done", ->
       # There will be only 1 file
       fileName = torrent.files[0].name
+      torrent.destroy destroyStore: false
 
       resolve fileName
 
@@ -34,7 +36,9 @@ download = (magnetURI) ->
     if progress isnt 100
       log(
         "webtorrent client"
-        "#{torrent.name} - (#{progress}%) [↓ #{downloadSpeed} MBytes/s | ↑ #{uploadSpeed} MBytes/s]."
+        "#{
+          torrent.name
+        } - (#{progress}%) [↓ #{downloadSpeed} MBytes/s | ↑ #{uploadSpeed} MBytes/s]."
       )
 
   torrent.on "done", ->
@@ -57,7 +61,7 @@ export stream = (showURL, episodeNumber, quality) ->
     torrent = await download magnetURI
     fileName = await getFileName torrent
 
-    convertedFiles = ffmpeg.convert fileName
+    convertedFiles = await ffmpeg.convert fileName
 
     log "answer", "Fetched media files to stream."
     return convertedFiles
