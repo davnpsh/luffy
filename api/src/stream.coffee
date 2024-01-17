@@ -34,7 +34,7 @@ download = (magnetURI) ->
     if progress isnt 100
       log(
         "webtorrent client"
-        "Download progress: #{progress}% [↓ #{downloadSpeed} MBytes/s | ↑ #{uploadSpeed} MBytes/s]."
+        "#{torrent.name} - (#{progress}%) [↓ #{downloadSpeed} MBytes/s | ↑ #{uploadSpeed} MBytes/s]."
       )
 
   torrent.on "done", ->
