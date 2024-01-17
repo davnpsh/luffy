@@ -45,6 +45,10 @@ downloadBinary = ->
         resolve()
 
 convertToMP4 = (fileName) ->
+  # Create folder if it doesnt exist
+  if !fs.existsSync path
+    fs.mkdirSync path
+
   new Promise (resolve, reject) ->
     newFileName = "#{fileName.replace oldFormat, ""}#{newFormat}"
 
@@ -66,6 +70,10 @@ convertToMP4 = (fileName) ->
       resolve newFileName
 
 extractSubtitles = (fileName) ->
+  # Create folder if it doesnt exist
+  if !fs.existsSync path
+    fs.mkdirSync path
+
   new Promise (resolve, reject) ->
     subsFile = "#{fileName.replace oldFormat, ""}#{subsFormat}"
 

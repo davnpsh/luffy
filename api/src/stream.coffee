@@ -2,6 +2,7 @@ import { log } from "./logger.coffee"
 import * as scrapper from "./scrapper.coffee"
 import WebTorrent from "webtorrent-hybrid"
 import * as ffmpeg from "./converter.coffee"
+import fs from "fs"
 
 client = new WebTorrent()
 
@@ -17,6 +18,10 @@ getFileName = (torrent) ->
       resolve fileName
 
 download = (magnetURI) ->
+  # Create folder if it doesnt exist
+  if !fs.existsSync path
+    fs.mkdirSync path
+
   torrent = await client.add magnetURI, path: path
   log "webtorrent client", "Added magnetURI for #{torrent.name}."
 
