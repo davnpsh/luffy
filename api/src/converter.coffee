@@ -80,7 +80,7 @@ extractSubtitles = (fileName) ->
     inputFile = "#{path}/#{fileName}"
     outputFile = "#{path}/#{subsFile}"
 
-    command = "#{binExecutable} -i '#{inputFile}' -map 0:s:0 '#{outputFile}'"
+    command = "#{binExecutable} -i '#{inputFile}' -map 0:s:0 -y '#{outputFile}'"
 
     log "ffmpeg", "Attemping to extract subtitles from media source."
     exec command, (err, stdout, stderr) ->
