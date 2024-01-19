@@ -50,6 +50,17 @@ convertVideo = (fileName) ->
     fs.mkdirSync path
 
   new Promise (resolve, reject) ->
+    # Kill other ffmpeg instances
+    command = "pkill ffmpeg"
+
+    exec command, (err, stdout, stderr) ->
+      if err
+        log "ffmpeg error", "Couldn't kill ffmpeg processes"
+        log "ffmpeg error", err.message
+        reject()
+
+      log "ffmpeg", "Killed ffmpeg instances."
+
     newFileName = "#{fileName.replace oldFormat, ""}#{newFormat}"
 
     inputFile = "#{path}/#{fileName}"
@@ -79,6 +90,17 @@ extractSubtitles = (fileName) ->
     fs.mkdirSync path
 
   new Promise (resolve, reject) ->
+    # Kill other ffmpeg instances
+    command = "pkill ffmpeg"
+
+    exec command, (err, stdout, stderr) ->
+      if err
+        log "ffmpeg error", "Couldn't kill ffmpeg processes"
+        log "ffmpeg error", err.message
+        reject()
+
+      log "ffmpeg", "Killed ffmpeg instances."
+
     subsFile = "#{fileName.replace oldFormat, ""}#{subsFormat}"
 
     inputFile = "#{path}/#{fileName}"
