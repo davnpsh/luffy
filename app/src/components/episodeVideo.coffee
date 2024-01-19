@@ -205,6 +205,7 @@ Video = ({ watchData, quality }) ->
   useEffect(
     ->
       fetchVideoData = ->
+        setIsVideoLoading true
         axios
           .post "/api/episode/stream",
             showURL: showURL, episodeNumber: episodeNumber, quality: quality
@@ -217,7 +218,7 @@ Video = ({ watchData, quality }) ->
       fetchVideoData()
       return
   ,
-    []
+    [quality]
   )
 
   if isVideoLoading
@@ -241,7 +242,7 @@ Video = ({ watchData, quality }) ->
   else
     <div className="my-5">
       <video controls>
-        <source src={videoData.videoFilePath} type="video/webm" />
+        <source src={videoData.videoFilePath} type="video/mp4" />
       </video>
     </div>
 

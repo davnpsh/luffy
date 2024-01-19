@@ -13,7 +13,7 @@ virtualPath = "/api/video"
 
 # Video stats
 oldFormat = ".mkv"
-newFormat = ".webm"
+newFormat = ".mp4"
 subsFormat = ".vtt"
 
 downloadBinary = ->
@@ -50,27 +50,13 @@ convertVideo = (fileName) ->
     fs.mkdirSync path
 
   new Promise (resolve, reject) ->
-    # Kill other ffmpeg instances
-    command = "pkill ffmpeg"
-
-    exec command, (err, stdout, stderr) ->
-      if err
-        log "ffmpeg error", "Couldn't kill ffmpeg processes"
-        log "ffmpeg error", err.message
-        reject()
-
-      log "ffmpeg", "Killed ffmpeg instances."
-
     newFileName = "#{fileName.replace oldFormat, ""}#{newFormat}"
 
     inputFile = "#{path}/#{fileName}"
     outputFile = "#{path}/#{newFileName}"
 
-    # For webm (with hardsub)
-    command = "#{binExecutable} -i '#{inputFile}' -filter_complex \"subtitles='#{inputFile}'\" -c:v libvpx -crf 10 -b:v 1M -c:a libvorbis -y '#{outputFile}'"
-
-    # For mp4
-    #command = "#{binExecutable} -i '#{inputFile}' -map 0 -c copy -c:a aac '#{outputFile}'"
+    # For mp4 (with hardsub)
+    command = "#{binExecutable} -i '#{inputFile}' -filter_complex \"subtitles='#{inputFile}'\" -c:v libx264 -crf 30 -b:v 500K -c:a libvorbis -preset:v ultrafast -y '#{outputFile}'"
 
     log(
       "ffmpeg"
@@ -90,17 +76,6 @@ extractSubtitles = (fileName) ->
     fs.mkdirSync path
 
   new Promise (resolve, reject) ->
-    # Kill other ffmpeg instances
-    command = "pkill ffmpeg"
-
-    exec command, (err, stdout, stderr) ->
-      if err
-        log "ffmpeg error", "Couldn't kill ffmpeg processes"
-        log "ffmpeg error", err.message
-        reject()
-
-      log "ffmpeg", "Killed ffmpeg instances."
-
     subsFile = "#{fileName.replace oldFormat, ""}#{subsFormat}"
 
     inputFile = "#{path}/#{fileName}"
