@@ -9,6 +9,55 @@ import {
 import axios from "axios"
 import { useState, useEffect } from "react"
 
+MainSkeleton = ->
+  <div className="container w-full m-auto flex flex-col lg:flex-row gap-5 animate-pulse">
+    <div className="w-full lg:w-2/3 flex flex-col">
+      <div className="w-full mb-5">
+        <div className="w-full h-96 bg-gray-400"></div>
+      </div>
+      <div className="w-full px-4">
+        <Typography
+          variant="h1"
+          className="h-5 w-full rounded-full bg-gray-300 mb-2"
+        >
+          &nbsp;
+        </Typography>
+        <Typography variant="h2" className="h-4 w-44 rounded-full bg-gray-300">
+          &nbsp;
+        </Typography>
+        <div className="mt-5">
+          <Typography
+            variant="paragraph"
+            className="h-2 w-full rounded-full bg-gray-500 mb-1"
+          >
+            &nbsp;
+          </Typography>
+          <Typography
+            variant="paragraph"
+            className="h-2 w-11/12 rounded-full bg-gray-500 mb-1"
+          >
+            &nbsp;
+          </Typography>
+          <Typography
+            variant="paragraph"
+            className="h-2 w-11/12 rounded-full bg-gray-500 mb-1"
+          >
+            &nbsp;
+          </Typography>
+          <Typography
+            variant="paragraph"
+            className="h-2 w-2/3 rounded-full bg-gray-500 mb-1"
+          >
+            &nbsp;
+          </Typography>
+        </div>
+      </div>
+    </div>
+    <div className="w-full lg:w-1/3">
+      <div className="w-full h-[60vh] bg-gray-400 hidden lg:block"></div>
+    </div>
+  </div>
+
 Episode = ({ image, number, title, description, link }) ->
   urlParams = new URLSearchParams window.location.search
 
@@ -191,7 +240,9 @@ Main = ({ watchData }) ->
 
 export EpisodeVideo = ({ watchData, isWatchDataLoading }) ->
   if isWatchDataLoading
-    <></>
+    <>
+      <MainSkeleton />
+    </>
   else
     <>
       <Main watchData={watchData} />
