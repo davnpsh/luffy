@@ -56,7 +56,7 @@ convertVideo = (fileName) ->
     outputFile = "#{path}/#{newFileName}"
 
     # For mp4 (with hardsub)
-    command = "#{binExecutable} -i '#{inputFile}' -filter_complex \"subtitles='#{inputFile}'\" -c:v libx264 -crf 30 -b:v 500K -c:a libvorbis -preset:v ultrafast -y '#{outputFile}'"
+    command = "#{binExecutable} -i '#{inputFile}' -filter_complex \"subtitles='#{inputFile}'\" -c:v libx264 -crf 30 -b:v 500K -c:a aac -preset:v ultrafast -y '#{outputFile}'"
 
     log(
       "ffmpeg"
