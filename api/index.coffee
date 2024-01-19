@@ -18,7 +18,7 @@ api.use "/api/video", express.static "./public"
 # @route GET /api/schedule
 # @returns {Object} with schedule
 api.get "/api/schedule", (req, res) ->
-  log "request", "Request to fetch schedule from #{req.ip}."
+  log "request", "Request to fetch schedule."
   res.send await scrapper.getSchedule()
 
 # @route POST /api/episodes/magnets
@@ -27,7 +27,7 @@ api.get "/api/schedule", (req, res) ->
 api.post "/api/episodes/magnets", (req, res) ->
   data = req.body
 
-  log "request", "Request to fetch episodes from #{req.ip}."
+  log "request", "Request to fetch episodes."
   res.send await scrapper.getShowEpisodes data.showURL
 
 # @route POST /api/show/year
@@ -36,7 +36,7 @@ api.post "/api/episodes/magnets", (req, res) ->
 api.post "/api/show/profile", (req, res) ->
   data = req.body
 
-  log "request", "Request to fetch show name and release year from #{req.ip}."
+  log "request", "Request to fetch show name and release year."
   res.send await scrapper.getShowProfile data.showURL
 
 # @route POST /api/show/id
@@ -46,7 +46,7 @@ api.post "/api/show/profile", (req, res) ->
 api.post "/api/show/id", (req, res) ->
   data = req.body
 
-  log "request", "Request to fetch show TMDB ID from #{req.ip}."
+  log "request", "Request to fetch show TMDB ID."
   res.send await tmdb.getShowID data.showName, data.showYear
 
 # @route POST /api/show/details
@@ -55,7 +55,7 @@ api.post "/api/show/id", (req, res) ->
 api.post "/api/show/details", (req, res) ->
   data = req.body
 
-  log "request", "Request to fetch show details from #{req.ip}."
+  log "request", "Request to fetch show details."
   res.send await tmdb.getShowDetails data.showID
 
 # @route POST /api/show/episode_details
@@ -66,7 +66,7 @@ api.post "/api/show/details", (req, res) ->
 api.post "/api/episode/details", (req, res) ->
   data = req.body
 
-  log "request", "Request to fetch episode details from #{req.ip}."
+  log "request", "Request to fetch episode details."
   res.send(
     await tmdb.getEpisodeDetails(
       data.showID
@@ -81,7 +81,7 @@ api.post "/api/episode/details", (req, res) ->
 api.post "/api/carousel", (req, res) ->
   data = req.body
 
-  log "request", "Request to fetch carousel data from #{req.ip}"
+  log "request", "Request to fetch carousel data."
   res.send await custom.getCarouselData data.shows
 
 # @route POST /api/watch/details
@@ -90,7 +90,7 @@ api.post "/api/carousel", (req, res) ->
 api.post "/api/watch/details", (req, res) ->
   data = req.body
 
-  log "request", "Request to fetch watch data from #{req.ip}"
+  log "request", "Request to fetch watch data."
   res.send await custom.getWatchData data.showURL
 
 # @route POST /api/episodes/list
@@ -99,7 +99,7 @@ api.post "/api/watch/details", (req, res) ->
 api.post "/api/episodes/list", (req, res) ->
   data = req.body
 
-  log "request", "Request to fetch episodes list from #{req.ip}"
+  log "request", "Request to fetch episodes list."
   res.send await custom.getEpisodesList data.showID, data.season, data.showURL
 
 # @route POST /api/episode/stream
@@ -109,7 +109,7 @@ api.post "/api/episodes/list", (req, res) ->
 api.post "/api/episode/stream", (req, res) ->
   data = req.body
 
-  log "request", "Request to stream"
+  log "request", "Request to stream."
   res.send await stream.stream data.showURL, data.episodeNumber, data.quality
 
 api.listen PORT, ADDRESS, ->
