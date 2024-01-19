@@ -16,11 +16,11 @@ Episode = ({ image, number, title, description, link }) ->
   episodeNumber = urlParams.get "e"
 
   if number is episodeNumber
-    <ListItem className="flex flex-col md:flex-row gap-5 group" selected={true}>
-      <div className="md:w-1/3 h-full flex items-center">
+    <ListItem className="flex flex-row gap-5 group" selected={true}>
+      <div className="w-1/3 h-full flex items-center">
         <img src={image} className="object-cover" />
       </div>
-      <div className="md:w-2/3">
+      <div className="w-2/3">
         <Typography
           variant="h6"
           color="white"
@@ -39,11 +39,11 @@ Episode = ({ image, number, title, description, link }) ->
     </ListItem>
   else
     <a href={link}>
-      <ListItem className="w-full flex flex-col md:flex-row gap-5 group">
-        <div className="md:w-1/3 h-full flex items-center">
+      <ListItem className="w-full flex flex-row gap-5 group">
+        <div className="w-1/3 h-full flex items-center">
           <img src={image} className="object-cover" />
         </div>
-        <div className="md:w-2/3">
+        <div className="w-2/3">
           <Typography
             variant="h6"
             color="white"
@@ -97,8 +97,8 @@ EpisodesList = ({ watchData }) ->
   if areEpisodesLoading
     <EpisodesListSkeleton />
   else
-    <div className="w-full rounded-lg border border-white">
-      <div className="w-full p-4">
+    <div className="w-full rounded-lg lg:border lg:border-white">
+      <div className="w-full p-4 hidden lg:block">
         <Typography variant="h3" className="text-white text-xl">
           {watchData["name"]}
         </Typography>
@@ -106,7 +106,12 @@ EpisodesList = ({ watchData }) ->
           Season {watchData["season"]}
         </Typography>
       </div>
-      <div className="w-full overflow-y-auto max-h-[60vh]">
+      <div className="w-full p-4 lg:hidden">
+        <Typography variant="h3" className="text-white text-xl">
+          More episodes...
+        </Typography>
+      </div>
+      <div className="w-full lg:overflow-y-auto lg:max-h-[60vh]">
         <List>
           {
             for own episode, data of episodesListData
@@ -124,11 +129,18 @@ EpisodesList = ({ watchData }) ->
     </div>
 
 QualityButtons = ({ setQuality }) ->
-  <ButtonGroup color="white">
-    <Button onClick={-> setQuality "480p"}>480p</Button>
-    <Button onClick={-> setQuality "720p"}>720p</Button>
-    <Button onClick={-> setQuality "1080p"}>1080p</Button>
-  </ButtonGroup>
+  <>
+    <ButtonGroup color="white" className="hidden lg:block px-4">
+      <Button onClick={-> setQuality "480p"}>480p</Button>
+      <Button onClick={-> setQuality "720p"}>720p</Button>
+      <Button onClick={-> setQuality "1080p"}>1080p</Button>
+    </ButtonGroup>
+    <ButtonGroup color="white" fullWidth className="lg:hidden px-4">
+      <Button onClick={-> setQuality "480p"}>480p</Button>
+      <Button onClick={-> setQuality "720p"}>720p</Button>
+      <Button onClick={-> setQuality "1080p"}>1080p</Button>
+    </ButtonGroup>
+  </>
 
 Main = ({ watchData }) ->
   [quality, setQuality] = useState "480p"
@@ -138,13 +150,13 @@ Main = ({ watchData }) ->
   # Params on address bar
   episodeNumber = urlParams.get "e"
 
-  <div className="container w-full m-auto flex flex-row gap-5">
-    <div className="w-2/3 flex flex-col">
+  <div className="container w-full m-auto flex flex-col lg:flex-row gap-5">
+    <div className="w-full lg:w-2/3 flex flex-col">
       <div className="w-full">
         <QualityButtons setQuality={setQuality} />
       </div>
       <div className="w-full" />
-      <div className="w-full">
+      <div className="w-full px-4">
         <Typography variant="h1" className="text-white text-2xl">
           {watchData["name"]}
         </Typography>
@@ -172,7 +184,7 @@ Main = ({ watchData }) ->
         </Typography>
       </div>
     </div>
-    <div className="w-1/3">
+    <div className="w-full lg:w-1/3">
       <EpisodesList watchData={watchData} />
     </div>
   </div>
