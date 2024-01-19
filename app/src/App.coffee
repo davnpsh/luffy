@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 # Pages
 import { Home } from "./pages/home.coffee"
 import { Watch } from "./pages/watch.coffee"
+import { Error } from "./pages/error.coffee"
 # Components
 import { Navbar } from "./components/navbar.coffee"
 import { Footer } from "./components/footer.coffee"
@@ -49,7 +50,7 @@ export App = ->
             }
           />
           <Route path="/watch" element={<Watch />} />
-          <Route path="*" element={<h1>Not found</h1>} />
+          <Route path="*" element={<Error />} />
         </Routes>
 
         <Footer />
