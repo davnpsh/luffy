@@ -13,7 +13,22 @@ MainSkeleton = ->
   <div className="container w-full m-auto flex flex-col lg:flex-row gap-5 animate-pulse">
     <div className="w-full lg:w-2/3 flex flex-col">
       <div className="w-full mb-5">
-        <div className="w-full h-96 bg-gray-400"></div>
+        <div className="grid my-5 h-96 w-full animate-pulse place-items-center rounded-lg bg-gray-300">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="h-12 w-12 text-gray-500"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z"
+            />
+          </svg>
+        </div>
       </div>
       <div className="w-full px-4">
         <Typography
@@ -54,7 +69,7 @@ MainSkeleton = ->
       </div>
     </div>
     <div className="w-full lg:w-1/3">
-      <div className="w-full h-[60vh] bg-gray-400 hidden lg:block"></div>
+      <div className="w-full h-[60vh] bg-gray-400 hidden lg:block" />
     </div>
   </div>
 
@@ -177,9 +192,62 @@ EpisodesList = ({ watchData }) ->
       </div>
     </div>
 
+Video = ({ watchData, quality }) ->
+  [videoData, setVideoData] = useState null
+  [isVideoLoading, setIsVideoLoading] = useState true
+
+  urlParams = new URLSearchParams window.location.search
+
+  # Params on address bar
+  showURL = urlParams.get "s"
+  episodeNumber = urlParams.get "e"
+
+  useEffect(
+    ->
+      fetchVideoData = ->
+        axios
+          .post "/api/episode/stream",
+            showURL: showURL, episodeNumber: episodeNumber, quality: quality
+          .then (response) ->
+            setVideoData response.data
+            setIsVideoLoading false
+          .catch (error) ->
+            return error
+
+      fetchVideoData()
+      return
+  ,
+    []
+  )
+
+  if isVideoLoading
+    <div className="grid my-5 h-56 md:h-96 w-full rounded-lg overflow-hidden relative">
+      <img
+        src={watchData.images.backdrop}
+        alt={watchData.name}
+        className="h-full w-full object-cover"
+      />
+      <div className="absolute inset-0 grid h-full w-full place-items-center bg-black/75">
+        <Spinner className="h-10 w-10" />
+        <Typography
+          variant="paragraph"
+          color="white"
+          className="text-md font-normal absolute mt-24"
+        >
+          This may take minutes...
+        </Typography>
+      </div>
+    </div>
+  else
+    <>
+      <video controls>
+        <source src={videoData.videoFilePath} type="video/webm" />
+      </video>
+    </>
+
 QualityButtons = ({ setQuality }) ->
   <>
-    <ButtonGroup color="white" className="hidden lg:block px-4">
+    <ButtonGroup color="white" className="hidden lg:block">
       <Button onClick={-> setQuality "480p"}>480p</Button>
       <Button onClick={-> setQuality "720p"}>720p</Button>
       <Button onClick={-> setQuality "1080p"}>1080p</Button>
@@ -204,7 +272,9 @@ Main = ({ watchData }) ->
       <div className="w-full">
         <QualityButtons setQuality={setQuality} />
       </div>
-      <div className="w-full" />
+      <div className="w-full">
+        <Video watchData={watchData} quality={quality} />
+      </div>
       <div className="w-full px-4">
         <Typography variant="h1" className="text-white text-2xl">
           {watchData["name"]}
