@@ -38,7 +38,10 @@ export Watch = ->
   else
     <div className="flex-1">
       {if episodeNumber
-        <EpisodeVideo />
+        <EpisodeVideo
+          watchData={watchData}
+          isWatchDataLoading={isWatchDataLoading}
+        />
       else
         <>
           <ShowInfo

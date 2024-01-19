@@ -1,11 +1,6 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
-import {
-  List
-  ListItem
-  Typography
-  Spinner
-} from "@material-tailwind/react"
+import { List, ListItem, Typography, Spinner } from "@material-tailwind/react"
 
 EpisodesListSkeleton = ->
   <div className="grid place-items-center mt-5">
@@ -19,10 +14,18 @@ Episode = ({ image, number, title, description, link }) ->
         <img src={image} className="object-cover" />
       </div>
       <div className="md:w-2/3">
-        <Typography variant="h6" color="white" className="mb-2 group-hover:text-ctp-base transition-all ease-out">
+        <Typography
+          variant="h6"
+          color="white"
+          className="mb-2 group-hover:text-ctp-base transition-all ease-out"
+        >
           {number}. {title}
         </Typography>
-        <Typography variant="small" color="white" className="font-normal opacity-50 group-hover:text-ctp-base transition-all ease-out">
+        <Typography
+          variant="small"
+          color="white"
+          className="font-normal opacity-50 group-hover:text-ctp-base transition-all ease-out"
+        >
           {description}
         </Typography>
       </div>
