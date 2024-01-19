@@ -56,14 +56,14 @@ convertVideo = (fileName) ->
     outputFile = "#{path}/#{newFileName}"
 
     # For webm (with hardsub)
-    command = "#{binExecutable} -i '#{inputFile}' -vf -filter_complex \"subtitles='#{inputFile}'\" -c:v libvpx -crf 10 -b:v 1M -c:a libvorbis -y '#{outputFile}'"
+    command = "#{binExecutable} -i '#{inputFile}' -filter_complex \"subtitles='#{inputFile}'\" -c:v libvpx -crf 10 -b:v 1M -c:a libvorbis -y '#{outputFile}'"
 
     # For mp4
     #command = "#{binExecutable} -i '#{inputFile}' -map 0 -c copy -c:a aac '#{outputFile}'"
 
     log(
       "ffmpeg"
-      "Attempting to convert from video source from #{oldFormat} to #{newFormat}."
+      "Attempting to convert video source from #{oldFormat} to #{newFormat}."
     )
     exec command, (err, stdout, stderr) ->
       if err
