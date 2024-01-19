@@ -239,11 +239,11 @@ Video = ({ watchData, quality }) ->
       </div>
     </div>
   else
-    <>
+    <div className="my-5">
       <video controls>
         <source src={videoData.videoFilePath} type="video/webm" />
       </video>
-    </>
+    </div>
 
 QualityButtons = ({ setQuality }) ->
   <>
