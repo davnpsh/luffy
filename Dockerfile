@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install gnupg wget -y && \
 
 ### APP INSTALLATION
 
-WORKDIR /luffy
+WORKDIR /usr/src/luffy
 
 COPY . .
 
