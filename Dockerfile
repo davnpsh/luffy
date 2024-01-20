@@ -1,5 +1,5 @@
 # Base image MUST be based on Debian
-FROM 21-bookworm
+FROM node:21-bookworm
 
 ### DEPENDENCIES FOR PUPPETEER
 
