@@ -1,0 +1,14 @@
+# Modules, cache and builds
+node_modules/
+.parcel-cache/
+dist/
+public/
+bin/
+
+# Environment variables
+.env
+.env.example
+
+# git
+.gitignore
+.dockerignore
