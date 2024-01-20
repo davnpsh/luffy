@@ -98,7 +98,6 @@ export convert = (fileName) ->
     await downloadBinary()
 
     # Uncomment this block to ensure compatibility with all web browsers. It migh be very slow, tho
-    log "answer", "Retrieved subtitles from media source."
     videoFile = await convertVideo fileName
     videoFilePath = "#{virtualPath}/#{videoFile}"
     # Comment the following line if you uncommented the previous block
