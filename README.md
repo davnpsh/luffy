@@ -139,3 +139,5 @@ npm run bundle
 </div>
 
 ## Credits
+
+You can see this project as a mere indexer. All the content is from [Subsplease](https://subsplease.org/) and [TheMovieDB API](https://developer.themoviedb.org/docs/getting-started). I am **NOT** affiliated with either.
