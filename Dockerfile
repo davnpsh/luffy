@@ -1,16 +1,25 @@
-# Base image (MUST be based on Debian)
+# Base image MUST be based on Debian
 FROM 21-bookworm
 
-# Set the working directory in the container
+### DEPENDENCIES FOR PUPPETEER
+
+# Google Chrome installation
+RUN apt-get update && apt-get install gnupg wget -y && \
+  wget --quiet --output-document=- https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor > /etc/apt/trusted.gpg.d/google-archive.gpg && \
+  sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' && \
+  apt-get update && \
+  apt-get install google-chrome-stable -y --no-install-recommends && \
+  rm -rf /var/lib/apt/lists/*
+
+### APP INSTALLATION
+
 WORKDIR /luffy
 
-# Copy necessary files
 COPY . .
 
-# Install dependencies
 RUN npm install
 
-# Expose the port on which your app runs
+# App port for frontend
 EXPOSE 4000
 
 # Start
