@@ -23,7 +23,7 @@ getData = (domain, queries) ->
   browser = await puppeteer.launch headless: "new", args: ["--no-sandbox"]
   page = await browser.newPage()
 
-  await page.goto domain, waitUntil: "networkidle0"
+  await page.goto domain, waitUntil: "networkidle0", timeout: 0
 
   results = {}
 
