@@ -1,6 +1,18 @@
 # luffy
 
-> Self-hosted automatic torrents indexer for anime seasonals
+> Self-hosted automatic torrents indexer for seasonal anime
+
+<div align="center">
+
+  <a href="https://github.com/davnpsh/luffy">
+  <img src="https://img.shields.io/badge/version-v1.0.0-x?style=for-the-badge&logo=github&color=cba6f7"/></a>
+  <a href="https://github.com/davnpsh/luffy/pkgs/container/luffy">
+  <img src="https://img.shields.io/badge/docker-image-x?style=for-the-badge&logo=docker&color=89b4fa"/></a>
+  <a href="https://parceljs.org/">
+  <img src="https://img.shields.io/badge/bundler-parcel-x?style=for-the-badge&logo=javascript&color=f9e2af"/></a>
+</div>
+
+<br />
 
 <div align="center">
 
@@ -89,15 +101,16 @@ npm install
 ```
 
 4. Create a `.env` file in the root of the project with your TheMovieDB api key:
+
 ```text
 TMDB_API_KEY=your_api_key
 ```
 
 5. Run the project with:
+
 ```sh
 npm run bundle
 ```
-
 
 ## Screenshots
 
