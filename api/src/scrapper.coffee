@@ -20,7 +20,7 @@ BASE_DOMAIN = "https://subsplease.org"
 # 'domain' has to be a domain name
 # 'query' has to be a JS function to evaluate in the browser
 getData = (domain, queries) ->
-  browser = await puppeteer.launch headless: "false"
+  browser = await puppeteer.launch headless: "new", args: ["--no-sandbox"]
   page = await browser.newPage()
 
   await page.goto domain, waitUntil: "networkidle0"
@@ -134,7 +134,7 @@ export getShowEpisodes = (showURL) ->
       else
         return
 
-    episodeNumber = parseInt(episodeNumber)
+    episodeNumber = parseInt episodeNumber
 
     # Data parsing
     episodeLinks = {}
