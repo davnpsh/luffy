@@ -93,7 +93,15 @@ Where `$ENV_VAR` is your TheMovieDB api key.
 
 ### Node.js
 
-This project was developed with node.js version 21.5.0. If using a prior version, make sure at least dependencies are up-to-date. You MUST also **install a web browser compatible with [Puppeteer](https://pptr.dev/)** (Chromium recommended).
+First, you need to consider the following:
+
+- Due to the ffmpeg binary included, only **Linux x64** systems are supported.
+
+- This project was developed with node.js version 21.5.0. If using a prior version, make sure at least dependencies are up-to-date.
+
+- **Install a web browser compatible with [Puppeteer](https://pptr.dev/)** (Chromium recommended).
+
+Then, follow these instructions:
 
 1. Install node.js and npm.
 
