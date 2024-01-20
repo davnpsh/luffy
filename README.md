@@ -30,9 +30,15 @@
 
 ## Notes
 
+I am aware that the quality of the code is not the best and the implementation of the backend can improve a lot.
+
+I wanted to learn Node.js + React so I could use it for future projects. Some time ago, I dreamed about creating my own anime website but had little knowledge about web technologies. Finally, I decided to make it happen and here is my try.
+
+I would appreciate any feedback you want to give me. Please use the [Issues](https://github.com/davnpsh/luffy/issues) tab.
+
 ## Installation
 
-For any of these installation methods, the UI is available at `http://127.0.0.1:4000`.
+For any of these installation methods, the UI is available at [http://127.0.0.1:4000](http://127.0.0.1:4000).
 
 ### Docker compose (recommended)
 
