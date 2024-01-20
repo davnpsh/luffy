@@ -4,10 +4,11 @@
 
 <div align="center">
 
-  <a href="https://github.com/davnpsh/luffy"><img src="https://img.shields.io/badge/version-v1.0.0-x?style=for-the-badge&logo=github&color=cba6f7"/></a>
-  <a href="https://github.com/davnpsh/luffy/pkgs/container/luffy"><img src="https://img.shields.io/badge/docker-image-x?style=for-the-badge&logo=docker&color=89b4fa"/></a>
-  <a href="https://parceljs.org/"><img src="https://img.shields.io/badge/bundler-parcel-x?style=for-the-badge&logo=javascript&color=f9e2af"/></a>
-  <a href="https://coffeescript.org/"><img src="https://img.shields.io/badge/made%20with-coffeescript-x?style=for-the-badge&logo=coffeescript&color=a6e3a1"/></a>
+<a href="https://github.com/davnpsh/luffy"><img src="https://img.shields.io/badge/version-v1.0.0-x?style=for-the-badge&logo=github&color=cba6f7"/></a>
+<a href="https://github.com/davnpsh/luffy/pkgs/container/luffy"><img src="https://img.shields.io/badge/docker-image-x?style=for-the-badge&logo=docker&color=89b4fa"/></a>
+<a href="https://parceljs.org/"><img src="https://img.shields.io/badge/bundler-parcel-x?style=for-the-badge&logo=javascript&color=f9e2af"/></a>
+<a href="https://coffeescript.org/"><img src="https://img.shields.io/badge/made%20with-coffeescript-x?style=for-the-badge&logo=coffeescript&color=a6e3a1"/></a>
+
 </div>
 
 <br />
@@ -17,13 +18,23 @@
   <img src="./imgs/mockup.png" width="90%"/>
 </div>
 
+## Index
+
+- [Notes](https://github.com/davnpsh/luffy#notes)
+- [Installation](https://github.com/davnpsh/luffy#installation)
+  - [Docker compose](https://github.com/davnpsh/luffy#docker-compose-recommended)
+  - [Docker build](https://github.com/davnpsh/luffy#docker-build)
+  - [Node.js](https://github.com/davnpsh/luffy#nodejs)
+- [Screenshots](https://github.com/davnpsh/luffy#screenshots)
+- [Credits](https://github.com/davnpsh/luffy#credits)
+
 ## Notes
 
 ## Installation
 
 For any of these installation methods, the UI is available at `http://127.0.0.1:4000`.
 
-### docker compose (recommended)
+### Docker compose (recommended)
 
 If you have a good processor to host this app, you should try this method. If not, try the node.js method.
 
@@ -80,7 +91,7 @@ docker run -p 4000:4000 -e TMDB_API_KEY=$ENV_VAR IMAGE_NAME:TAG
 
 Where `$ENV_VAR` is your TheMovieDB api key.
 
-### node.js
+### Node.js
 
 This project was developed with node.js version 21.5.0. If using a prior version, make sure at least dependencies are up-to-date. You MUST also **install a web browser compatible with [Puppeteer](https://pptr.dev/)** (Chromium recommended).
 
