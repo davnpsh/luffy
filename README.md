@@ -1,6 +1,11 @@
 # luffy
 
-> Self-hosted automatic anime web indexer for seasonals
+> Self-hosted automatic torrents indexer for anime seasonals
+
+<div align="center">
+
+  <img src="./imgs/mockup.png" width="90%"/>
+</div>
 
 ## Notes
 
@@ -94,11 +99,21 @@ npm run bundle
 ```
 
 
-## Other screenshots
+## Screenshots
 
-<div align="center" width="100%">
+<div align="center">
 
-  <img src="./screenshots/2.png"/>
+### Homepage
+
+  <img src="./imgs/1.png" width="90%"/>
+
+### Gallery
+
+  <img src="./imgs/2.png" width="90%"/>
+
+### Show details
+
+  <img src="./imgs/3.png" width="90%"/>
 </div>
 
 ## Credits
