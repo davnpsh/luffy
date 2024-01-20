@@ -4,6 +4,8 @@ node_modules/
 dist/
 public/
 bin/
+README.md
+LICENSE
 
 # Environment variables
 .env

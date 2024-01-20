@@ -1,5 +1,5 @@
-# Base image
-FROM node:21
+# Base image (MUST be based on Debian)
+FROM 21-bookworm
 
 # Set the working directory in the container
 WORKDIR /luffy
