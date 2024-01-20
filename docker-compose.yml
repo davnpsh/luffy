@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  luffy:
+    image: ghcr.io/davnpsh/luffy:experimental
+    ports:
+      - "4000:4000"
+    environment:
+      # Your TheMovieDB api key:
+      - TMDB_API_KEY=
+    # Map this volume if you want to control the data about episodes
+    # inside the container
+    volumes:
+      - ./episodes:/usr/src/luffy/public
