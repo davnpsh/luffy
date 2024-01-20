@@ -4,12 +4,10 @@
 
 <div align="center">
 
-  <a href="https://github.com/davnpsh/luffy">
-  <img src="https://img.shields.io/badge/version-v1.0.0-x?style=for-the-badge&logo=github&color=cba6f7"/></a>
-  <a href="https://github.com/davnpsh/luffy/pkgs/container/luffy">
-  <img src="https://img.shields.io/badge/docker-image-x?style=for-the-badge&logo=docker&color=89b4fa"/></a>
-  <a href="https://parceljs.org/">
-  <img src="https://img.shields.io/badge/bundler-parcel-x?style=for-the-badge&logo=javascript&color=f9e2af"/></a>
+  <a href="https://github.com/davnpsh/luffy"><img src="https://img.shields.io/badge/version-v1.0.0-x?style=for-the-badge&logo=github&color=cba6f7"/></a>
+  <a href="https://github.com/davnpsh/luffy/pkgs/container/luffy"><img src="https://img.shields.io/badge/docker-image-x?style=for-the-badge&logo=docker&color=89b4fa"/></a>
+  <a href="https://parceljs.org/"><img src="https://img.shields.io/badge/bundler-parcel-x?style=for-the-badge&logo=javascript&color=f9e2af"/></a>
+  <a href="https://coffeescript.org/"><img src="https://img.shields.io/badge/made%20with-coffeescript-x?style=for-the-badge&logo=coffeescript&color=a6e3a1"/></a>
 </div>
 
 <br />
