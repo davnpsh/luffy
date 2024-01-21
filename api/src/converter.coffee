@@ -55,8 +55,8 @@ convertVideo = (fileName) ->
     inputFile = "#{path}/#{fileName}"
     outputFile = "#{path}/#{newFileName}"
 
-    # For mp4 (with hardsub)
-    command = "#{binExecutable} -i '#{inputFile}' -filter_complex \"subtitles='#{inputFile}'\" -c:v libx264 -crf 30 -b:v 500K -c:a aac -preset:v ultrafast -y '#{outputFile}'"
+    # Stream-copy video and audio, remove subtitles
+    command = "#{binExecutable} -i '#{inputFile}' -map 0:v -map 0:a -c copy -movflags +faststart -y '#{outputFile}'"
 
     log(
       "ffmpeg"
