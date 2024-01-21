@@ -243,6 +243,7 @@ Video = ({ watchData, quality }) ->
     <div className="my-5">
       <video controls>
         <source src={videoData.videoFilePath} type="video/mp4" />
+        <track kind="subtitles" src={videoData.subsFilePath} srclang="en" label="English" />
       </video>
     </div>
 
@@ -261,7 +262,7 @@ QualityButtons = ({ setQuality }) ->
   </>
 
 Main = ({ watchData }) ->
-  [quality, setQuality] = useState "480p"
+  [quality, setQuality] = useState "1080p"
 
   urlParams = new URLSearchParams window.location.search
 
