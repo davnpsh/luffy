@@ -230,13 +230,6 @@ Video = ({ watchData, quality }) ->
       />
       <div className="absolute inset-0 grid h-full w-full place-items-center bg-black/75">
         <Spinner className="h-10 w-10" />
-        <Typography
-          variant="paragraph"
-          color="white"
-          className="text-md font-normal absolute mt-24"
-        >
-          This may take minutes...
-        </Typography>
       </div>
     </div>
   else
