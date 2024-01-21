@@ -1,5 +1,5 @@
 import { log } from "./logger.coffee"
-import * as scrapper from "./scrapper.coffee"
+import * as scraper from "./scraper.coffee"
 import WebTorrent from "webtorrent-hybrid"
 import * as ffmpeg from "./converter.coffee"
 import fs from "fs"
@@ -47,7 +47,7 @@ download = (magnetURI) ->
   torrent
 
 getMagnetURI = (showURL, episodeNumber, quality) ->
-  episodesList = await scrapper.getShowEpisodes showURL
+  episodesList = await scraper.getShowEpisodes showURL
 
   for own fetchedEpisode, qualities of episodesList
     if fetchedEpisode is episodeNumber

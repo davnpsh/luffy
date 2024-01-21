@@ -1,4 +1,4 @@
-import * as scrapper from "./scrapper.coffee"
+import * as scraper from "./scraper.coffee"
 import * as tmdb from "./tmdb.coffee"
 import { log } from "./logger.coffee"
 
@@ -34,7 +34,7 @@ export getCarouselData = (shows) ->
 
 export getWatchData = (showURL) ->
   try
-    showProfile = await scrapper.getShowProfile showURL
+    showProfile = await scraper.getShowProfile showURL
     showID =
       await tmdb.getShowID removeSeason(showProfile.name), showProfile.year
     details = await tmdb.getShowDetails showID.id
@@ -50,7 +50,7 @@ export getWatchData = (showURL) ->
 
 export getEpisodesList = (showID, season, showURL) ->
   try
-    episodes = await scrapper.getShowEpisodes showURL
+    episodes = await scraper.getShowEpisodes showURL
 
     episodesList = {}
 

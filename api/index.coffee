@@ -1,5 +1,5 @@
 import { log } from "./src/logger.coffee"
-import * as scrapper from "./src/scrapper.coffee"
+import * as scraper from "./src/scraper.coffee"
 import * as tmdb from "./src/tmdb.coffee"
 import * as custom from "./src/custom.coffee"
 import express from "express"
@@ -19,7 +19,7 @@ api.use "/api/video", express.static "./public"
 # @returns {Object} with schedule
 api.get "/api/schedule", (req, res) ->
   log "request", "Request to fetch schedule."
-  res.send await scrapper.getSchedule()
+  res.send await scraper.getSchedule()
 
 # @route POST /api/episodes/magnets
 # @param showURL - string (must be from Subsplease)
@@ -28,7 +28,7 @@ api.post "/api/episodes/magnets", (req, res) ->
   data = req.body
 
   log "request", "Request to fetch episodes."
-  res.send await scrapper.getShowEpisodes data.showURL
+  res.send await scraper.getShowEpisodes data.showURL
 
 # @route POST /api/show/year
 # @param showURL - string (must be from Subsplease)
@@ -37,7 +37,7 @@ api.post "/api/show/profile", (req, res) ->
   data = req.body
 
   log "request", "Request to fetch show name and release year."
-  res.send await scrapper.getShowProfile data.showURL
+  res.send await scraper.getShowProfile data.showURL
 
 # @route POST /api/show/id
 # @param showName - string
