@@ -262,7 +262,7 @@ QualityButtons = ({ setQuality }) ->
   </>
 
 Main = ({ watchData }) ->
-  [quality, setQuality] = useState "480p"
+  [quality, setQuality] = useState "1080p"
 
   urlParams = new URLSearchParams window.location.search
 
