@@ -55,7 +55,7 @@ convertVideo = (fileName) ->
     inputFile = "#{path}/#{fileName}"
     outputFile = "#{path}/#{newFileName}"
 
-    # Stream-copy video and audio, remove subtitles
+    # Remux to MP4 by stream-copying video and audio, removing subtitles.
     command = "#{binExecutable} -i '#{inputFile}' -map 0:v -map 0:a -c copy -movflags +faststart -y '#{outputFile}'"
 
     log(
