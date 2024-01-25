@@ -30,6 +30,8 @@
 
 ## Notes
 
+:warning: This is a proof of concept. This is not the final version of what I want.
+
 I am aware that the quality of the code is not the best and the implementation of the backend can improve a lot.
 
 I wanted to learn Node.js + React so I could use it for future projects. Some time ago, I dreamed about creating my own anime website but had little knowledge about web technologies. Finally, I decided to make it happen and here is my try.
