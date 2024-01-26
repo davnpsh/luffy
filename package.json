@@ -15,7 +15,7 @@
     }
   },
   "scripts": {
-    "frontend": "parcel serve --target frontend --port 4000",
+    "frontend": "parcel serve --target frontend --host 0.0.0.0 --port 4000",
     "backend": "parcel build --target backend && node ./dist/backend/index.js",
     "bundle": "run-p frontend backend",
     "build": "parcel build"
